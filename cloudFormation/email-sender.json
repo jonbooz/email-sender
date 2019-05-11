@@ -1,0 +1,44 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Description" : "CloudFormation template to create email-sender and common resources.",
+    "Resources": {
+        "modulesTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "AttributeDefinitions": [ {
+                    "AttributeName": "id",
+                    "AttributeType": "S"
+                }
+                ],
+                "KeySchema": [
+                    { "AttributeName": "id", "KeyType": "HASH" }
+                ],
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 5,
+                    "WriteCapacityUnits": 5
+                },
+                "Tags": [ { "Key": "name", "Value": "Modules" } ]
+            }
+        },
+        "usersTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "AttributeDefinitions": [ {
+                    "AttributeName": "name",
+                    "AttributeType": "S"
+                }
+                ],
+                "KeySchema": [
+                    { "AttributeName": "name", "KeyType": "HASH" }
+                ],
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 5,
+                    "WriteCapacityUnits": 5
+                },
+                "Tags": [ { "Key": "name", "Value": "Users" } ]
+            }
+        }
+
+
+    }
+}
