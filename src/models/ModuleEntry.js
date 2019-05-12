@@ -6,4 +6,4 @@ module.exports = class ModuleEntry {
         this.entry = entry;
         this.format = format;
     }
-}
+};

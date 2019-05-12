@@ -13,19 +13,19 @@ const heading = function(level, text) {
     }
 
     return '<h' + level + '>' + text + '</h' + level +'>';
-}
+};
 
 const paragraph = function(text) {
     return '<p>' + text + '</p>';
-}
+};
 
 const body = function(content) {
     return '<body>' + content + '</body>';
-}
+};
 
 const email = function(body) {
     return HTML_FIRST_LINE + '<html>' + body + '</html>';
-}
+};
 
 /**
  * This processor takes a list of heading/entry pairs and 
@@ -48,4 +48,4 @@ module.exports = class EmailProcessor {
         return email(emailBody);
     }
 
-}
+};

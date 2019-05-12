@@ -24,4 +24,4 @@ module.exports = class EmailSenderEngine {
         }
         return input;
     }
-}
+};

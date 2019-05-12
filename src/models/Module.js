@@ -20,4 +20,4 @@ module.exports = class Module {
             entries: JSON.stringify(this.entries)
         };
     }
-}
+};

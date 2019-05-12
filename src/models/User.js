@@ -47,4 +47,4 @@ module.exports = class User {
             activeModules: activeModulesJson
         };
     }
-}
+};

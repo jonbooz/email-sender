@@ -51,7 +51,7 @@ module.exports = class DataStore {
 
         const filterExpression = "begins_with(#n, :v1)";
         const filterValues = { ':v1': userName };
-        const filterNames = { '#n': 'id' } 
+        const filterNames = { '#n': 'id' };
         return await this.aws.ddb.scan(resources.modulesTable,
                     filterExpression,
                     filterValues,
@@ -69,4 +69,4 @@ module.exports = class DataStore {
         await this.aws.ddb.save(resources.modulesTable, module.asJson());
     }
 
-}
+};

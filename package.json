@@ -34,6 +34,7 @@
         "grunt-exec": "latest",
         "grunt-contrib-compress": "latest",
         "grunt-aws-cloudformation": "latest",
+        "grunt-aws-s3": "latest",
         "mocha": "latest",
         "co-mocha": "latest",
         "chai": "latest",

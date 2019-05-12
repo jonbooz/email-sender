@@ -30,4 +30,4 @@ module.exports = class Configurator {
     buildEngine() {
         return new Engine(this.processors);
     }
-}
+};

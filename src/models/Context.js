@@ -62,4 +62,4 @@ module.exports = class Context {
     getLogger() {
         return this._logger;
     }
-}
+};

@@ -41,4 +41,4 @@ module.exports = class UserUpdateProcessor {
         this._dataStore.saveUser(user);
         return user;
     }
-}
+};

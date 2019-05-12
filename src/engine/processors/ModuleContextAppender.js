@@ -13,4 +13,4 @@ module.exports = class ModuleContextAppender {
         context.setModules(modules);
         return modules;
     }
-}
+};

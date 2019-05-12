@@ -2,7 +2,7 @@
 
 const _ = require('lodash');
 
-const DataStore = require('../../services/DataStore.js')
+const DataStore = require('../../services/DataStore.js');
 const Context = require('../../models/Context.js');
 
 /**
@@ -30,4 +30,4 @@ module.exports = class ModuleRetriever {
 
         // TODO add support for global modules
     }
-}
+};

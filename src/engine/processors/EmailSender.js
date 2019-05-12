@@ -28,4 +28,4 @@ module.exports = class EmailSender {
         this._aws.ses.sendEmail(EMAIL_SUBJECT, messageBody, EMAIL_SOURCE, recipients);
         return messageBody;
     }
-}
+};

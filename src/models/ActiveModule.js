@@ -16,4 +16,4 @@ module.exports = class ActiveModule {
             times: this.times
         };
     }
-}
+};
