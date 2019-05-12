@@ -149,7 +149,7 @@
             "Type": "AWS::Events::Rule",
             "Properties": {
                 "Description": "ScheduleRule",
-                "ScheduleExpression": "cron(0 12 ? * MON-FRI *)",
+                "ScheduleExpression": "cron(0 12 ? * * *)",
                 "State": "ENABLED",
                 "Targets": [{
                     "Arn": { "Fn::GetAtt": ["emailSenderLambda", "Arn"] },
