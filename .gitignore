@@ -67,3 +67,4 @@ package-lock.json
 .tscache/
 build/
 src/**/*.types.js
+data/
