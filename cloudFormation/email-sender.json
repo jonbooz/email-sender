@@ -121,7 +121,10 @@
                                 "kms:GenerateDataKeyWithoutPlaintext",
                                 "kms:DescribeKey",
                                 "kms:ReEncryptFrom",
-                                "ses:SendEmail"
+                                "ses:SendEmail",
+                                "logs:CreateLogGroup",
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
                             ], 
                             "Resource": "*" } ]
                     }

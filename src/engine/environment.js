@@ -10,10 +10,6 @@ module.exports = class Environment {
     getAws() {
         if (typeof this.aws === 'undefined') {
             this.aws = new AwsUtils();
-            this.aws.aws.config.credentials.get(err => {
-                if (err) console.log(err);
-                else console.log(this.aws.aws.config.credentials);
-            });
         }
         return this.aws;
     }

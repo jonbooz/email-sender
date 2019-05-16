@@ -1,5 +1,6 @@
 'use strict';
 
+const datetime = require('node-datetime');
 const AwsUtils = require('aws-utils');
 const Context = require('../../models/Context.js');
 
@@ -25,7 +26,8 @@ module.exports = class EmailSender {
      */
     async process(messageBody, context) {
         const recipients = [context.getUser().email];
-        this._aws.ses.sendEmail(EMAIL_SUBJECT, messageBody, EMAIL_SOURCE, recipients);
+        const subjectToSend = EMAIL_SUBJECT + ' - ' + datetime.create().format('m/d/Y');
+        await this._aws.ses.sendEmail(subjectToSend, messageBody, EMAIL_SOURCE, recipients);
         return messageBody;
     }
 };

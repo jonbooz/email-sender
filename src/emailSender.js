@@ -15,8 +15,7 @@ const emailSenderHandler = async function(event, ctx, callback) {
     context.setLogLevel(environment.getLogLevel());
     context.setLogger(environment.getLogger());
 
-    engine.run(context);
+    await engine.run(context);
 };
 
 exports.handler = emailSenderHandler;
-

@@ -38,7 +38,7 @@ module.exports = class UserUpdateProcessor {
                 activeModule.index = newIndex;
             }
         }
-        this._dataStore.saveUser(user);
+        await this._dataStore.saveUser(user);
         return user;
     }
 };
