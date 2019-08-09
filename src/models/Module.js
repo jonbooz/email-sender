@@ -10,7 +10,11 @@ module.exports = class Module {
             // entries should just be a list of strings...
             this.entries = mod.entries;
         }
-        this.format = 'text'; // TODO support markdown
+        if (mod.format == undefined) {
+            this.format = 'text';
+        } else {
+            this.format = mod.format;
+        }
     }
 
     asJson() {

@@ -26,7 +26,7 @@ module.exports = class Environment {
     }
 
     getLogLevel() {
-        return 'debug';
+        return 'error';
     }
 
     getLogger() {

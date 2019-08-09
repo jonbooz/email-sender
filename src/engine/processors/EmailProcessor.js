@@ -32,9 +32,10 @@ const email = function(body) {
  * generates the body of a email to send.
  */
 module.exports = class EmailProcessor {
+
     /**
      * 
-     * @param {[string]} entries 
+     * @param {[ModuleEntry]} entries 
      * @param {Context} context 
      */
     async process(entries, context) {
