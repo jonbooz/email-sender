@@ -9,4 +9,4 @@ module.exports = class TextFormatter {
     async format(entry) {
         return entry;
     }
-}
+};

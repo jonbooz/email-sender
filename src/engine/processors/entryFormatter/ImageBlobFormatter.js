@@ -30,7 +30,7 @@ module.exports = class ImageBlobFormatter {
 
         return '<img src="' + imageBlob + '" />';
     }
-}
+};
 
 function encode (input) {
     var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";

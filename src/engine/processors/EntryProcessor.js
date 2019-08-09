@@ -39,4 +39,4 @@ module.exports = class EntryProcessor {
         }
         return formattedEntries;
     }
-}
+};
