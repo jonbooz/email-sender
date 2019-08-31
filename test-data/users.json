@@ -1,0 +1,12 @@
+{
+    "jonbooz": {
+        "activeModules": [{"name":"jonbooz/header","repeats":-1,"index":0,"times":0},{"name":"jonbooz/dokkodo","repeats":0,"index":20,"times":0},{"name":"jonbooz/rulesforlife","repeats":0,"index":4,"times":0},{"name":"jonbooz/thoughts","repeats":0,"index":83,"times":0},{"name":"jonbooz/mentalmodels","repeats":0,"index":90,"times":0},{"name":"jonbooz/mindfulness","repeats":3,"index":8,"times":2}],
+        "email": "jon@jonbooz.com",
+        "name": "jonbooz"
+    },
+    "test": {
+        "activeModules": [{"name":"test/dailychallenge","repeats":0,"index":17,"times":0},{"name":"test/dokkodo","repeats":0,"index":17,"times":0},{"name":"test/header","repeats":0,"index":1,"times":0},{"name":"test/thoughts","repeats":0,"index":6,"times":0},{"name":"test/image","repeats":0,"index":0,"times":0}],
+        "email": "jon@jonbooz.com",
+        "name": "test"
+    }
+}
