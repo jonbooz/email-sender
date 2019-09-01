@@ -1,16 +1,17 @@
 {
     "jonbooz/dokkodo": {
-        "id": "jonbooz/dokkoko",
+        "id": "jonbooz/dokkodo",
         "entries": ["Accept everything just the way it is.","Do not seek pleasure for its own sake.","Do not, under any circumstances, depend on a partial feeling.","Think lightly of yourself and deeply of the world.","Be detached from desire your whole life long.","Do not regret what you have done.","Never be jealous.","Never let yourself be saddened by a separation.","Resentment and complaint are appropriate neither for oneself or others.","Do not let yourself be guided by the feeling of lust or love.","In all things have no preferences.","Be indifferent to where you live.","Do not pursue the taste of good food.","Do not hold on to possessions you no longer need.","Trust in yourself and do not be superstitious.","While it’s different with military equipment, do not be fond of material things.","Do not fear death.","Do not seek to possess either goods or fiefs for your old age.","Respect Buddha and the gods without counting on their help.","You may abandon your own body but you must preserve your honour.","Never stray from the Way."],
         "heading": "Dokkōdō"
     },
     "jonbooz/header": {
         "id": "jonbooz/header",
         "entries": ["Δικαίως ταῦτα πάσχεις˙ μᾶλλον δὴ θέλεις ἀγαθὸς αὔριον γενέσθαι ἢ σήμερον εἶναι."],
-        "heading": "Always remember,"
+        "heading": "Always remember,",
+        "format": "html"
     },
     "test/dokkodo": {
-        "id": "test/dokkoko",
+        "id": "test/dokkodo",
         "entries": ["Accept everything just the way it is.","Do not seek pleasure for its own sake.","Do not, under any circumstances, depend on a partial feeling.","Think lightly of yourself and deeply of the world.","Be detached from desire your whole life long.","Do not regret what you have done.","Never be jealous.","Never let yourself be saddened by a separation.","Resentment and complaint are appropriate neither for oneself or others.","Do not let yourself be guided by the feeling of lust or love.","In all things have no preferences.","Be indifferent to where you live.","Do not pursue the taste of good food.","Do not hold on to possessions you no longer need.","Trust in yourself and do not be superstitious.","While it’s different with military equipment, do not be fond of material things.","Do not fear death.","Do not seek to possess either goods or fiefs for your old age.","Respect Buddha and the gods without counting on their help.","You may abandon your own body but you must preserve your honour.","Never stray from the Way."],
         "heading": "Dokkōdō"
     },

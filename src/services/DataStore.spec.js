@@ -1,7 +1,6 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const AwsUtils = require('aws-utils');
 const Module = require('../models/Module.js');
 const User = require('../models/User.js');
 
@@ -25,7 +24,7 @@ afterEach(() => {
     this.sandbox.restore();
 });
 
-describe('DataStore', () => {
+describe('services/DataStore', () => {
     it('gets a user', async () => {
         const aws = { };
         aws.listStackResources = LIST_STACK_RESOURCES;
