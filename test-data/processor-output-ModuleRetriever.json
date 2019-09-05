@@ -1,0 +1,93 @@
+[
+  {
+    "id": "test/header",
+    "heading": "Always remember,",
+    "entries": [
+      "Δικαίως ταῦτα πάσχεις˙ μᾶλλον δὴ θέλεις ἀγαθὸς αὔριον γενέσθαι ἢ σήμερον εἶναι.",
+      "二兎を追う者は一兎をも得ず。• (にとをおうものはいっとをもえず。)"
+    ],
+    "format": "text"
+  },
+  {
+    "id": "test/dokkodo",
+    "heading": "Dokkōdō",
+    "entries": [
+      "Accept everything just the way it is.<br/>Acepta todo exactamente de la manera que es.<br/>世々の道をそむく事なし (よよ　の　みち　を　そむく　こと　なし)<br/>Accepta tot exactament de la manera que és.<br/>Ne pas contrevenir à la Voie immuable à travers les temps.",
+      "Do not seek pleasure for its own sake.<br/>No busques el placer por su propio bien.<br/>身にたのしみをたくます (み　に　たのしみ　を　たく　まず)<br/>No busques el plaer pel seu propi bé.<br/>Éviter de rechercher les plaisirs du corps.",
+      "Do not, under any circumstances, depend on a partial feeling.<br/>Bajo ninguna circunstancia, no dependas de un sentimiento parcial.<br/>よろすに依枯の心なし (よろず　に　えこ　の　こころ　なし)<br/>Sota cap circumstància, no depengues d'un sentiment parcial.<br/>Être impartial en tout.",
+      "Think lightly of yourself and deeply of the world.<br/>Piensa ligeramente en ti y profundamente en el mundo.<br/>身をあさく思世をふかく思ふ (み　を　あさく　おもい　よ　を　ふかく　おもう)<br/>Pensa lleugerament en tu i profundament en el món.",
+      "Be detached from desire your whole life long.<br/>Mantente separado del deseo a lo largo de toda tu vida.<br/>一生の間よくしん思わす (いっしょう　の　あいだ　よくしん　おもわず)<br/>Mantén-te separat del desig al llarg de tota la teua vida.<br/>N'être jamais cupide durant toute la vie.",
+      "Do not regret what you have done.<br/>No te arrepientas de lo que has hecho.<br/>我事におゐて後悔をせす (わがこと　において　こうかい　お　せず)<br>No et penedisques del que has fet.<br/>N'avoir aucun regret dans les affaires.",
+      "Never be jealous.<br/>Nunca seas celoso.<br/>善惡に他をねたむ心なし (ぜん　あく　に　た　を　ねたむ　こころ　なし)<br/>Mai sigues gelós.<br/>Ne jamais jalouser autrui en bien ou en mal.",
+      "Never let yourself be saddened by a separation.<br/>Nunca te entristezcas por una separación.<br/>いつれの道にもわかれをかなします (いるれ　の　みち　にも　わかれ　を　かなしまず)<br/>Mai t'entristisques per una separació.<br/>Ne jamais être attristé par toutes séparations.",
+      "Resentment and complaint are appropriate neither for oneself or others.<br/>El resentimiento y las quejas no son adecuadas ni hacia ti mismo ni hacia otros.<br/>自他共にうらみかこつ心なし (じた　ともに　うらみ　かこつ　こころ　なし)<br/>El ressentiment i les queixes no són adequades ni cap a tu mateix ni cap a uns altres.<br/>N'éprouver aucune rancune ou animosité vis-à-vis de soi ou des autres.",
+      "Do not let yourself be guided by the feeling of lust or love.<br/>Nunca permitas que te guíe la lujuria o el amor.<br/>れんほの道思ひよるこゝろなし (れんぼ　の　みち　おもいよる　こころ　なし)<br/>Mai permetes que et guie la luxúria o l'amor.<br/>N'avoir aucun désir d'amour.",
+      "In all things have no preferences.<br/>No tengas preferencias en ninguna cosa.<br/>物毎にすきこのむ事なし (もの　ごと　に　すき　このむ　こと　なし)<br/>No tingues preferències en cap cosa.<br/>N'avoir aucune préférence en toutes choses.",
+      "Be indifferent to where you live.<br/>Sé indiferente hacia en donde vives.<br/>私宅におゐてのそむ心なし (したく　において　のぞむ　こころ　なし)<br/>S'indiferent cap a on vius.<br/>Ne jamais rechercher son confort.",
+      "Do not pursue the taste of good food.<br/>No persigas el probar buena comida.<br/>身ひとつに美食をこのます (み　ひとつ　に　びしょく　を　このまず)<br/>No perseguisques tastar bon menjar.<br/>Ne jamais rechercher les mets les plus fins afin de contenter son corps.",
+      "Do not hold on to possessions you no longer need.<br/>No te aferres a posesiones que ya no necesites.<br/>末々代物なる古き道具を所持せす (すえずえ　しろもの　なる　ふるき　どうぐ　しょじ　せず)<br/>No t'aferres a possessions que ja no necessites.<br/>Ne jamais s'entourer, à aucun moment de la vie, d'objets précieux.",
+      "Do not act following customary beliefs.<br/>No actúes siguiendo costumbres o creencias.<br/>わか身にいたり物いみする事なし (わが　み　に　いたり　ものいみ　する　こと　なし)<br/>No actues seguint costums o creences.<br/>Ne pas reculer pour de fausses croyances.",
+      "Do not collect weapons or practice with weapons beyond what is useful.<br/>No colecciones armas o practiques con ellas más allá de lo útil.<br/>兵具は格別よの道具たしなます (へいぐ　は　かくべつ　よ　の　どうぐ　たしなまず)<br/>No col·leccionis armes ni hi practiquis més enllà de l'útil.<br/>Ne jamais être tenté par aucun objet autre que les armes.",
+      "Do not fear death.<br/>No temas a la muerte.<br/>道におゐては死をいとわず思ふ (みち　において　わ　し　を　いと　わず　おもう)<br/>No tingues por a la mort.<br/>Se consacrer entièrement à la Voie sans même craindre la mort.",
+      "Do not seek to possess either goods or fiefs for your old age.<br/>No busques poseer bienes o feudos en tu vejez.<br/>老身に財寳所領もちゆる心なし (ろうしん　に　ざいほう　しょりょう　もちゆる　こころ　なし)<br/>No busques posseir béns o feus en la teua vellesa.<br/>Même vieux n'avoir aucun désir de posséder ou d'utiliser des biens.",
+      "Respect Buddha and the gods without counting on their help.<br/>Respeta a Buda y los dioses sin contar con su ayuda.<br/>佛神は貴し佛神をたのます (ぶっしん　は　ととし　ぶっしん　を　たのまず)<br/>Respecte a Buda i els déus sense comptar amb la seua ajuda.<br/>Vénérer les bouddhas et divinités mais ne pas compter sur eux.",
+      "You may abandon your own body but you must preserve your honour.<br/>Puedes abandonar tu cuerpo pero debes perseverar en el honor.<br/>身を捨ても名利はすてす (み　を　すて　ても　みょうり　わ　すてず)<br/>Pots abandonar el teu cos però has de perseverar en l'honor.",
+      "Never stray from the Way.<br/>Nunca te apartes del Camino.<br/>常に兵法の道をはなれす (つねに　へいほう　の　みち　を　はなれず)<br/>Mai t'apartes del Camí.<br/>Ne jamais abandonner la Voie de la tactique."
+    ],
+    "format": "text"
+  },
+  {
+    "id": "test/dailychallenge",
+    "heading": "Today's Challenge",
+    "entries": [
+      "Wake up one hour early",
+      "Cold Shower (voluntary discomfort)",
+      "Five things I’m grateful for",
+      "Take a one hour walk",
+      "Journal for Five Minutes in the Morning",
+      "Do not complain",
+      "Write down five role models and analyze them",
+      "Write out the worst case scenario if you follow your dreams",
+      "Gaze into the stars (or sky) for 15 minutes",
+      "Go an hour without talking",
+      "Practice something you’re not good at",
+      "Do a kindness for a stranger",
+      "What would you do if you were to die in 1 year, in 5 years",
+      "Physical Training in the morning",
+      "Comtemplate sympatheia",
+      "No news for a day",
+      "Wear your worst clothes out.",
+      "Leave your phone at home",
+      "Have a deep conversation",
+      "Schedule quality leisure for the coming weekend."
+    ],
+    "format": "text"
+  },
+  {
+    "id": "test/thoughts",
+    "heading": "Something to ponder",
+    "entries": [
+      "La racionalidad es evitar la ruina sistémica.",
+      "No hay «racionalidad» en las creencias, hay racionalidad en las acciones.",
+      "No conozco ningún sistema ético que permita no prestar ayuda a alguien que se ahoga porque nadie ha acudido en su auxilio, ningún sistema que diga: «Salvaré a quien se ahoga solo si los demás también salen a salvarlo».",
+      "Podemos definir a una persona libre precisamente como aquella cuyo destino no depende esencial o directamente de la evaluación de sus pares.",
+      "En términos probabilísticos, la volatilidad y el tiempo son lo mismo. El concepto de fragilidad nos permitió conferir algo de rigor a la idea de que el tiempo es el único juez eficaz de las cosas.",
+      "La verdadera igualdad es la igualdad probable. ... La desigualdad estática no es más que una instantánea de la desigualdad; no refleja lo que te sucederá en el transcurso de la vida.",
+      "un «individuo» es una entidad mal definida. Es más probable que «yo» sea un grupo que una sola persona.",
+      "A escala federal, soy liberal; a escala estatal, republicano; a escala local, demócrata; y con mi familia y mis amigos, socialista.",
+      "si algo estúpido funciona (y sirve para hacer dinero), no puede ser estúpido",
+      "La regla de plata, bastante más sólida, dice: «No trates a los demás como no quisieras que los demás te trataran a ti».",
+      "Si tienes una opinión necesitas entender el otro lado mejor que el otro lado"
+    ],
+    "format": "text"
+  },
+  {
+    "id": "test/image",
+    "heading": "Image",
+    "entries": [
+      "jonbooz-image-sender:IMG_0087.jpg"
+    ],
+    "format": "imageBlob"
+  }
+]
+
