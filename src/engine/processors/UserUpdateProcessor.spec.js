@@ -4,12 +4,13 @@ const expect = require('chai').expect;
 const Context = require('../../models/Context.js');
 const User = require('../../models/User.js');
 
-const ModuleRetriever = require('./ModuleRetriever.js');
+const UserUpdateProcessor = require('./UserUpdateProcessor.js');
 
 const USERS = require('../../../test-data/users.json');
 const MODULES = require('../../../test-data/modules.json');
 
-const EXPECTED_OUTPUT = require('../../../test-data/processor-output-ModuleRetriever.json');
+const EXPECTED_INPUT = require('../../../test-data/processor-output-EmailSender.json');
+const EXPECTED_OUTPUT = require('../../../test-data/processor-output-UserUpdateProcessor.json');
 
 beforeEach(() => {
     this.sandbox = sinon.createSandbox();
@@ -19,19 +20,21 @@ afterEach(() => {
     this.sandbox.restore();
 });
 
-describe('engine/processors/ModuleRetriever', () => {
-    it('retrieves modules for user', async () => {
+describe('engine/processors/UserUpdateProcessor', () => {
+    it("updates a user's data based on the sent email", async () => {
         const user = new User(USERS['test']);
+        user._buildActiveModuleSet();
         const modules = MODULES['test'];
 
         const context = new Context();
         context.setUser(user);
+        context.setModules(modules);
 
         const dataStore = { };
-        dataStore.getModules = async (user) => new Promise((resolve, reject) => resolve(modules));
+        dataStore.saveUser = async (user) => null;
 
-        const processor = new ModuleRetriever(dataStore);
-        const output = await processor.process(null, context);
+        const processor = new UserUpdateProcessor(dataStore);
+        const output = await processor.process(EXPECTED_INPUT, context);
 
         expect(output).to.eql(EXPECTED_OUTPUT);
     });

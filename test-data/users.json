@@ -5,7 +5,7 @@
         "name": "jonbooz"
     },
     "test": {
-        "activeModules": [{"name":"test/dailychallenge","repeats":0,"index":17,"times":0},{"name":"test/dokkodo","repeats":0,"index":17,"times":0},{"name":"test/header","repeats":0,"index":1,"times":0},{"name":"test/thoughts","repeats":0,"index":6,"times":0},{"name":"test/image","repeats":0,"index":0,"times":0}],
+        "activeModules": [{"name":"test/dailychallenge","repeats":0,"index":19,"times":0},{"name":"test/dokkodo","repeats":0,"index":19,"times":0},{"name":"test/header","repeats":0,"index":1,"times":0},{"name":"test/thoughts","repeats":0,"index":8,"times":0},{"name":"test/image","repeats":0,"index":0,"times":0}],
         "email": "jon@jonbooz.com",
         "name": "test"
     }
