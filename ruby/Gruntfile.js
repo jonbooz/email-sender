@@ -1,0 +1,85 @@
+module.exports = function(grunt) {
+    
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+
+        cloudformation: {
+            options: {
+                region: 'us-west-2'
+            },
+            createStack: {
+                action: 'create-stack',
+                stackName: 'email-sender-ruby',
+                deleteIfExists: true,
+                capabilities: ['CAPABILITY_IAM'],
+                src: ['cloud_formation/bootstrap.json']
+            },
+            updateStack: {
+                action: 'update-stack',
+                stackName: 'email-sender-ruby',
+                capabilities: ['CAPABILITY_IAM'],
+                src: ['cloud_formation/email-sender.json']
+            }
+        },
+
+        aws_s3: {
+            dist: {
+                options: {
+                    bucket: 'email-sender-ruby-code-us-west-2-888557227313'
+                },
+                files: [
+                    {
+                        cwd: 'build/',
+                        expand: true,
+                        src: ['email-sender.zip'],
+                        dest: '/'
+                    }
+                ]
+            },
+        },
+
+        copy: {
+            ruby: {
+                files: [
+                    {expand: true, cwd: 'src/', src: ['**/*'], dest: 'build/email-sender/'},
+                ]
+            }
+        },
+        exec: {
+            install_modules: {
+                cmd: 'bundle install --without test --path build/email-sender/vendor/bundle'
+            }
+        },
+        compress: {
+            options_package: {
+                options: {
+                    archive: 'build/email-sender.zip'
+                },
+                expand: true,
+                cwd: 'build/email-sender/',
+                src: ['**/*'],
+                dest: '/'
+            }
+        },
+        clean: ['build/']
+    });
+
+    // Load the plugin that provides the "uglify" task.
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-exec');
+    grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('grunt-aws-cloudformation');
+    grunt.loadNpmTasks('grunt-aws-s3');
+
+    grunt.registerTask('create-stack', ['cloudformation:createStack', 'dist', 'upload', 'cloudformation:updateStack']);
+    grunt.registerTask('update-stack', ['cloudformation:updateStack']);
+
+    grunt.registerTask('dist', ['clean', 'copy:ruby', 'exec:install_modules']);
+    grunt.registerTask('upload', ['compress', 'aws_s3:dist']);
+
+    // Default task(s).
+    grunt.registerTask('default', ['dist', 'upload']);
+    grunt.registerTask('debug', ['test', 'js']);
+
+};

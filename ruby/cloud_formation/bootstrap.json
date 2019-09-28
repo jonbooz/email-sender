@@ -1,0 +1,15 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Description" : "CloudFormation template to create email-sender and common resources.",
+    "Resources": {
+        "codeBucket": {
+            "Type": "AWS::S3::Bucket",
+			"Properties": {
+				"BucketName": {
+					"Fn::Sub": "email-sender-ruby-code-${AWS::Region}-${AWS::AccountId}"
+				}
+			}
+        }
+
+    }
+}

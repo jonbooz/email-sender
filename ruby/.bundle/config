@@ -1,0 +1,3 @@
+---
+BUNDLE_PATH: "build/email-sender/vendor/bundle"
+BUNDLE_WITHOUT: "test"

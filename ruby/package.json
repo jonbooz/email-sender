@@ -1,0 +1,25 @@
+{
+    "name": "email-sender-ruby",
+    "version": "0.0.1",
+    "authors": [
+        "Jonathan Booz <jon@jonbooz.com>"
+    ],
+    "description": "",
+    "license": "AllRightsReserved",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "build",
+        "node_modules"
+    ],
+    "devDependencies": {
+        "grunt": "latest",
+        "grunt-contrib-clean": "latest",
+        "grunt-contrib-jshint": "latest",
+        "grunt-contrib-copy": "latest",
+        "grunt-exec": "latest",
+        "grunt-contrib-compress": "latest",
+        "grunt-aws-cloudformation": "latest",
+        "grunt-aws-s3": "latest"
+    }
+}
