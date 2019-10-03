@@ -7,7 +7,7 @@ class CloudFormation
     @resources = { }
   end
 
-  def list_resources stack_name
+  def list_resources(stack_name)
     unless @resources.key? stack_name
       params = {
         stack_name: stack_name
@@ -22,6 +22,6 @@ class CloudFormation
       end
     end
 
-    return @resources[stack_name]
+    @resources[stack_name]
   end
 end

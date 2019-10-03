@@ -2,8 +2,8 @@ require 'aws-sdk-dynamodb'
 
 class DynamoDb
 
-  def initialize
-    @ddb = Aws::DynamoDB::Client.new
+  def initialize(client)
+    @ddb = client
   end
 
   ##
@@ -23,7 +23,7 @@ class DynamoDb
   #
   # where `x` is the hash and `y` is the DDB object.
   #
-  def save table, item
+  def save(table, item)
     params = {
       table_name: table,
       item: item
@@ -36,7 +36,7 @@ class DynamoDb
     end
   end
 
-  def read table, key
+  def read(table, key)
     params = {
       table_name: table,
       key: key
@@ -49,7 +49,7 @@ class DynamoDb
     end
   end
 
-  def scan table, expression, values, names = nil
+  def scan(table, expression, values, names = nil)
     params = {
       table_name: table,
       filter_expression: expression,

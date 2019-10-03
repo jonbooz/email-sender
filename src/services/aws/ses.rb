@@ -2,8 +2,8 @@ require 'aws-sdk-ses'
 
 class Ses
 
-  def initialize
-    @ses = Aws::SES::Client.new
+  def initialize(client)
+    @ses = client
   end
 
   def send_email(subject, message_body, source, recipients)
