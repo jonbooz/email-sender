@@ -8,7 +8,7 @@ require 'src/services/aws/utils'
 
 class Modules
   def initialize
-    AwsUtils.configure()
+    AwsUtils.configure
   end
 
   def get_dynamodb
