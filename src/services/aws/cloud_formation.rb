@@ -2,8 +2,8 @@ require 'aws-sdk-cloudformation'
 
 class CloudFormation
 
-  def initialize
-    @cf = Aws::CloudFormation::Client.new
+  def initialize(client)
+    @cf = client
     @resources = { }
   end
 
