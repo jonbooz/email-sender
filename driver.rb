@@ -1,16 +1,13 @@
 #!/usr/bin/ruby
 
-require './src/utils/JsonFileLogger'
-require './src/utils/Hashable'
+require './src/models/email_module'
+require './src/config/modules'
 
-class Test < Hashable
-  attr_accessor :value
-end
+Modules.config
 
-t = Test.new
-t.value = 'value'
+puts((EmailModule.get "jonbooz/test").to_hash)
+puts((EmailModule.get "jonbooz/second").to_hash)
 
-logger = JsonFileLogger.new('test.log')
-logger.log({key: 'test'})
-logger.log('string')
-logger.log(t)
+modules = EmailModule.begins_with('id', 'jonbooz')
+modules.each { |m| puts m.to_hash }
+
