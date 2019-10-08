@@ -4,32 +4,22 @@ require './src/utils/hashable'
 class ActiveRecord < Hashable
   ## Requires instance methods:
   #
-  # * table: the name of the table the record is stored in
-  # * key_name: the name of the key for the db identifier
   # * is_valid : this should be overridden if validation is required
 
-  def self.table_name(table)
-    @table = Modules.resources[table]
-  end
-
-  def self.key_name(key)
-    @key = key
-  end
-
-  def self.is_valid?
+  def is_valid?
     true
   end
 
   def save
     if is_valid?
-      Modules.get_dynamodb.save(@table, to_hash)
+      Modules.get_dynamodb.save(table, to_hash)
     end
   end
 
   def self.get(id)
     key = { }
-    key[@key] = id
-    item = Modules.get_dynamodb.read(@table, key)
+    key['id'] = id
+    item = Modules.get_dynamodb.read(table, key)
     item_to_instance item
   end
 
@@ -37,11 +27,21 @@ class ActiveRecord < Hashable
     expression = 'begins_with(#n, :v1)'
     values = {':v1': value}
     names = {'#n': name}
-    Modules.get_dynamodb.scan(@table, expression, values, names)
+    Modules.get_dynamodb.scan(table, expression, values, names)
         .map { |i| item_to_instance i }
   end
 
   private
+
+  def self.table
+    puts self.name
+    Modules.resources[self.name + 'Table']
+  end
+
+  def table
+    Modules.resources[self.class.to_s + 'Table']
+  end
+
   def self.item_to_instance(item)
     instance = self.new
     instance.methods.map {|m| m.to_s }
