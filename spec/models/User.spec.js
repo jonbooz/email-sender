@@ -1,9 +1,9 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const ActiveModule = require('./ActiveModule.js');
+const ActiveModule = require('../../src/models/ActiveModule.js');
 
-const User = require('./User.js');
+const User = require('../../src/models/User.js');
 
 const USERS = require('../../test-data/users.json');
 
@@ -59,19 +59,4 @@ describe('models/User', () => {
         expect(hasActiveModule).to.be.false;
     });
 
-    it('as json', () => {
-        const expected = USERS['test'];
-        const user = new User(expected);
-
-        const asJson = user.asJson();
-        expected.activeModules = JSON.stringify(expected.activeModules
-            .map((m) => new ActiveModule(m))
-            .map((am) => am.asJson()));
-        
-        expect(asJson).to.eql(expected);
-
-        const constructed = new User(asJson);
-        
-        expect(constructed).to.eql(user);
-    });
 });

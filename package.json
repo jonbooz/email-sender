@@ -16,8 +16,8 @@
     ],
     "scripts": {
         "test": "npm run test-unit",
-        "test-unit": "NODE_ENV=test mocha --require co-mocha 'src/**/*.spec.js'",
-        "test-integ": "NODE_ENV=test mocha --require co-mocha 'src/**/*.integ.js'"
+        "test-unit": "NODE_ENV=test mocha --require co-mocha 'spec/**/*.spec.js'",
+        "test-integ": "NODE_ENV=test mocha --require co-mocha 'spec/**/*.integ.js'"
     },
     "dependencies": {
         "aws-utils": "git+ssh://git@github.com:jonbooz/aws-utils.git",

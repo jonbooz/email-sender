@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 
 const fs = require('fs');
 
-const ImageBlobFormatter = require('./ImageBlobFormatter.js');
+const ImageBlobFormatter = require('../../../../src/engine/processors/entryFormatter/ImageBlobFormatter.js');
 
 const RESOURCES = require('../../../../test-data/resources.json');
 

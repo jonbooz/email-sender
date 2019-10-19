@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const Module = require('./Module.js');
+const Module = require('../../src/models/Module.js');
 
 const MODULES = require('../../test-data/modules.json');
 
@@ -31,17 +31,4 @@ describe('models/Module', () => {
         expect(mod.entries).to.eql(expected.entries);
         expect(mod.format).to.eql(expected.format);
     });
-
-    it('as json', () => {
-        const expected = MODULES['jonbooz/dokkodo'];
-        const mod = new Module(expected);
-
-        const asJson = mod.asJson();
-        expected.entries = JSON.stringify(expected.entries);
-        expect(asJson).to.eql(expected);
-
-        const constructed = new Module(asJson);
-        
-        expect(constructed).to.eql(mod);
-    })
 });

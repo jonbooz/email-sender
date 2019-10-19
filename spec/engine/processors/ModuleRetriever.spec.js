@@ -1,10 +1,10 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const Context = require('../../models/Context.js');
-const User = require('../../models/User.js');
+const Context = require('../../../src/models/Context.js');
+const User = require('../../../src/models/User.js');
 
-const ModuleRetriever = require('./ModuleRetriever.js');
+const ModuleRetriever = require('../../../src/engine/processors/ModuleRetriever.js');
 
 const USERS = require('../../../test-data/users.json');
 const MODULES = require('../../../test-data/modules.json');

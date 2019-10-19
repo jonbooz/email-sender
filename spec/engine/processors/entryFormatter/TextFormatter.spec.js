@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const TextFormatter = require('./TextFormatter.js');
+const TextFormatter = require('../../../../src/engine/processors/entryFormatter/TextFormatter.js');
 
 beforeEach(() => {
     this.sandbox = sinon.createSandbox();

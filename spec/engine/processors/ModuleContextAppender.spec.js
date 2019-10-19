@@ -1,9 +1,9 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const Context = require('../../models/Context.js');
+const Context = require('../../../src/models/Context.js');
 
-const ModuleContextAppender = require('./ModuleContextAppender.js');
+const ModuleContextAppender = require('../../../src/engine/processors/ModuleContextAppender.js');
 
 const EXPECTED_INPUT = require('../../../test-data/processor-output-ModuleRetriever.json');
 const EXPECTED_OUTPUT = require('../../../test-data/processor-output-ModuleContextAppender.json');

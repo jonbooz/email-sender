@@ -1,10 +1,10 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const Module = require('../models/Module.js');
-const User = require('../models/User.js');
+const Module = require('../../src/models/Module.js');
+const User = require('../../src/models/User.js');
 
-const DataStore = require('./DataStore.js');
+const DataStore = require('../../src/services/DataStore.js');
 
 const RESOURCES = require('../../test-data/resources.json');
 const USERS = require('../../test-data/users.json');
@@ -44,7 +44,7 @@ describe('services/DataStore', () => {
         const expectedUser = new User(USERS['test']);
         const expectedValues = {
             table: RESOURCES['usersTable'],
-            user: expectedUser.asJson()
+            user: expectedUser
         };
 
         const aws = { };
@@ -96,7 +96,7 @@ describe('services/DataStore', () => {
         const expectedModule = new Module(MODULES['test/header']);
         const expectedValues = {
             table: RESOURCES['modulesTable'],
-            user: expectedModule.asJson()
+            user: expectedModule
         };
 
         const aws = { };
