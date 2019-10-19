@@ -141,7 +141,7 @@
                     "S3Bucket": { "Ref": "codeBucket" },
                     "S3Key": "email-sender.zip"
                 },
-                "Runtime": "nodejs8.10",
+                "Runtime": "nodejs10.x",
                 "Timeout": 300,
                 "TracingConfig": {
                     "Mode": "Active"
