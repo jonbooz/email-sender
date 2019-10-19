@@ -38,13 +38,4 @@ module.exports = class User {
         this._activeModuleSet = _.fromPairs(this.activeModules.map((am) => [am.name, am]));
     }
 
-    asJson() {
-        const activeModulesJson = JSON.stringify(this.activeModules
-                    .map((m) => m.asJson()));
-        return {
-            name: this.name,
-            email: this.email,
-            activeModules: activeModulesJson
-        };
-    }
 };

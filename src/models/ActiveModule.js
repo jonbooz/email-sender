@@ -7,13 +7,4 @@ module.exports = class ActiveModule {
         this.index = module.index;
         this.times = module.times;
     }
-
-    asJson() {
-        return {
-            name: this.name,
-            repeats: this.repeats,
-            index: this.index,
-            times: this.times
-        };
-    }
 };

@@ -17,11 +17,4 @@ module.exports = class Module {
         }
     }
 
-    asJson() {
-        return {
-            id: this.id,
-            heading: this.heading,
-            entries: JSON.stringify(this.entries)
-        };
-    }
 };

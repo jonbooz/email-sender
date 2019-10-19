@@ -32,7 +32,7 @@ module.exports = class DataStore {
     async saveUser(user) {
         let resources = await this.aws.listStackResources(STACK_NAME);
 
-        await this.aws.ddb.save(resources.usersTable, user.asJson());
+        await this.aws.ddb.save(resources.usersTable, user);
     }
 
     async getModule(id) {
@@ -66,7 +66,7 @@ module.exports = class DataStore {
     async saveModule(module) {
         let resources = await this.aws.listStackResources(STACK_NAME);
 
-        await this.aws.ddb.save(resources.modulesTable, module.asJson());
+        await this.aws.ddb.save(resources.modulesTable, module);
     }
 
 };
