@@ -1,15 +1,13 @@
 'use strict';
 
 const Environment = require('./engine/environment.js');
-const Configurator = require('./engine/configurator.js');
 const Context = require('./models/Context.js');
 
 const DEFAULT_USER = "jonbooz";
 
 const emailSenderHandler = async function(event, ctx, callback) {
     const environment = new Environment();
-    const configurator = new Configurator(environment);
-    const engine = configurator.buildEngine();
+    const engine = environment.getEngine();
 
     let userName = null;
     if (event.hasOwnProperty('user')) {
