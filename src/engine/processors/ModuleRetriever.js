@@ -26,7 +26,7 @@ module.exports = class ModuleRetriever {
     async process(input, context) {
         const user = context.getUser();
         return await this._dataStore.getModules(user.name)
-            .then(data => data.filter((x) => user.hasActiveModule(x.id)))
+            .then(data => data.filter((x) => user.hasActiveModule(x.id)));
 
         // TODO add support for global modules
     }

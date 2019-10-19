@@ -5,7 +5,6 @@ const fs = require('fs');
 module.exports = class FileLogger {
     constructor(filePath) {
         this._filePath = filePath;
-        this._file = fs.openSync(filePath, 'w');
     }
 
     log(message) {
@@ -14,4 +13,4 @@ module.exports = class FileLogger {
         }
         fs.appendFileSync(this._filePath, message + '\n');
     }
-}
+};
