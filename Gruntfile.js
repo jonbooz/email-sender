@@ -51,7 +51,7 @@ module.exports = function(grunt) {
         copy: {
             js: {
                 files: [
-                    {expand: true, cwd: 'src/', src: ['**/*'], dest: 'build/email-sender/'},
+                    {expand: true, cwd: 'build/tsc/src/', src: ['**/*.js'], dest: 'build/email-sender/'},
                     {expand: true, src: ['package.json'], dest: 'build/'}
                 ]
             },
@@ -62,6 +62,9 @@ module.exports = function(grunt) {
             }
         },
         exec: {
+            tsc: {
+                cmd: 'tsc'
+            },
             install_modules: {
                 cwd: 'build/',
                 cmd: 'npm install --production'
@@ -94,7 +97,7 @@ module.exports = function(grunt) {
     grunt.registerTask('update-stack', ['cloudformation:updateStack']);
 
     grunt.registerTask('test', ['jshint']);
-    grunt.registerTask('js', ['test', 'copy:js']);
+    grunt.registerTask('js', ['test', 'exec:tsc', 'copy:js']);
     grunt.registerTask('dist', ['clean', 'js', 'exec:install_modules', 'copy:modules']);
     grunt.registerTask('upload', ['compress', 'aws_s3:dist']);
 

@@ -1,8 +1,8 @@
 'use strict';
 
 const AwsUtils = require('aws-utils');
-const User = require('../models/User.js');
-const Module = require('../models/Module.js');
+const User = require('../models/User.js').User;
+const Module = require('../models/Module.js').Module;
 
 const STACK_NAME = 'email-sender';
 

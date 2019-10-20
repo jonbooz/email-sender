@@ -1,6 +1,6 @@
 'use strict';
 
-const Context = require('../models/Context.js');
+const Context = require('../models/Context.js').Context;
 
 module.exports = class EmailSenderEngine {
     constructor(processor) {

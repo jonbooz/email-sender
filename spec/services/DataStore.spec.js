@@ -1,14 +1,14 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const Module = require('../../src/models/Module.js');
-const User = require('../../src/models/User.js');
+const Module = require('../../src/models/Module.js').Module;
+const User = require('../../src/models/User.js').User;
 
 const DataStore = require('../../src/services/DataStore.js');
 
-const RESOURCES = require('../../test-data/resources.json');
-const USERS = require('../../test-data/users.json');
-const MODULES = require('../../test-data/modules.json');
+const RESOURCES = require('../../../../test-data/resources.json');
+const USERS = require('../../../../test-data/users.json');
+const MODULES = require('../../../../test-data/modules.json');
 
 const LIST_STACK_RESOURCES = async () => {
     return new Promise((resolve, reject) => {

@@ -1,16 +1,16 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const Context = require('../../../src/models/Context.js');
-const User = require('../../../src/models/User.js');
+const Context = require('../../../src/models/Context.js').Context;
+const User = require('../../../src/models/User.js').User;
 
 const ModuleProcessor = require('../../../src/engine/processors/ModuleProcessor.js');
 
-const USERS = require('../../../test-data/users.json');
-const MODULES = require('../../../test-data/modules.json');
+const USERS = require('../../../../../test-data/users.json');
+const MODULES = require('../../../../../test-data/modules.json');
 
-const EXPECTED_INPUT = require('../../../test-data/processor-output-ModuleSortingProcessor.json');
-const EXPECTED_OUTPUT = require('../../../test-data/processor-output-ModuleProcessor.json');
+const EXPECTED_INPUT = require('../../../../../test-data/processor-output-ModuleSortingProcessor.json');
+const EXPECTED_OUTPUT = require('../../../../../test-data/processor-output-ModuleProcessor.json');
 const MODULE_PROCESSOR_OUTPUT = JSON.parse(JSON.stringify(EXPECTED_OUTPUT));
     // I'm doing this because EXPECTED_OUTPUT seems to turn into EntryProcessor output when the function runs
 

@@ -1,8 +1,8 @@
 'use strict';
 
-const Context = require('../../models/Context.js');
-const Module = require('../../models/Module.js');
-const ModuleEntry = require('../../models/ModuleEntry.js');
+const Context = require('../../models/Context.js').Context;
+const Module = require('../../models/Module.js').Module;
+const ModuleEntry = require('../../models/ModuleEntry.js').ModuleEntry;
 
 /**
  * This processor gets the appropriate entry from each

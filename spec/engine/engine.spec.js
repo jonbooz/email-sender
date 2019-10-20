@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const Context = require('../../src/models/Context.js');
+const Context = require('../../src/models/Context.js').Context;
 
 const Engine = require('../../src/engine/engine.js');
 

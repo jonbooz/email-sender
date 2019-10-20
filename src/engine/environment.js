@@ -3,6 +3,7 @@
 const AwsUtils = require('aws-utils');
 const DataStore = require('../services/DataStore.js');
 const Engine = require('./engine.js');
+const Logger = require('../utils/Logger.js');
 
 ////
 // Processors
@@ -57,7 +58,7 @@ module.exports = class Environment {
      * @returns {object} that accepts `log`
      */
     getLogger() {
-        return console;
+        return new Logger(this.getLogLevel());
     }
 
     getFormatters() {

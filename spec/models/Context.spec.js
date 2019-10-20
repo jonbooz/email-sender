@@ -1,13 +1,13 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const Module = require('../../src/models/Module.js');
-const User = require('../../src/models/User.js');
+const Module = require('../../src/models/Module.js').Module;
+const User = require('../../src/models/User.js').User;
 
-const Context = require('../../src/models/Context.js');
+const Context = require('../../src/models/Context.js').Context;
 
-const MODULES = require('../../test-data/modules.json');
-const USERS = require('../../test-data/users.json');
+const MODULES = require('../../../../test-data/modules.json');
+const USERS = require('../../../../test-data/users.json');
 
 beforeEach(() => {
     this.sandbox = sinon.createSandbox();

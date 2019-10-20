@@ -15,9 +15,11 @@
         "tests"
     ],
     "scripts": {
-        "test": "npm run test-unit",
-        "test-unit": "NODE_ENV=test mocha --require co-mocha 'spec/**/*.spec.js'",
-        "test-integ": "NODE_ENV=test mocha --require co-mocha 'spec/**/*.integ.js'"
+        "tsc": "tsc",
+        "driver": "tsc && node ./build/tsc/src/driver.js",
+        "test": "tsc && npm run test-unit",
+        "test-unit": "NODE_ENV=test mocha --require co-mocha 'build/tsc/spec/**/*.spec.js'",
+        "test-integ": "NODE_ENV=test mocha --require co-mocha 'build/tsc/spec/**/*.integ.js'"
     },
     "dependencies": {
         "aws-utils": "git+ssh://git@github.com:jonbooz/aws-utils.git",
