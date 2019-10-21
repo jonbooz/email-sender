@@ -1,7 +1,7 @@
 'use strict';
 
 const AwsUtils = require('aws-utils');
-const DataStore = require('../services/DataStore.js');
+const DataStore = require('../services/DataStore.js').DataStore;
 const Engine = require('./engine.js');
 const ConsoleLogger = require('../utils/logging/ConsoleLogger.js').ConsoleLogger;
 const LogLevel = require('../utils/logging/Logger.js').LogLevel;
