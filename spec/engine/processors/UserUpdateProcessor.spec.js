@@ -26,8 +26,8 @@ describe('engine/processors/UserUpdateProcessor', () => {
         const modules = MODULES['test'];
 
         const context = new Context();
-        context.setUser(user);
-        context.setModules(modules);
+        context.user = user;
+        context.modules = modules;
 
         const dataStore = { };
         dataStore.saveUser = async (user) => null;

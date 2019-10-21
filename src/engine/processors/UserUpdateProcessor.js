@@ -22,7 +22,7 @@ module.exports = class UserUpdateProcessor {
      * @param {Context} context 
      */
     async process(input, context) {
-        const user = context.getUser();
+        const user = context.user;
         for (let i in user.activeModules) {
             let activeModule = user.activeModules[i];
             if (activeModule.repeats < 0) {

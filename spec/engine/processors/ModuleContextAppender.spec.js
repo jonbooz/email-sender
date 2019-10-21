@@ -26,6 +26,6 @@ describe('engine/processors/ModuleContextAppender', () => {
         const output = await processor.process(EXPECTED_INPUT, context);
 
         expect(output).to.eql(EXPECTED_OUTPUT);
-        expect(context.getModules()).to.eql(EXPECTED_INPUT);
+        expect(context.modules).to.eql(EXPECTED_INPUT);
     });
 });

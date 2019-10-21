@@ -24,7 +24,7 @@ module.exports = class ModuleRetriever {
      * @param {Context} context 
      */
     async process(input, context) {
-        const user = context.getUser();
+        const user = context.user;
         return await this._dataStore.getModules(user.name)
             .then(data => data.filter((x) => user.hasActiveModule(x.id)));
 

@@ -1,37 +1,40 @@
 'use strict';
 
+import { Logger } from '../utils/logging/Logger';
 import { Module } from './Module';
 import { User } from './User';
 
 export class Context {
-    user: User;
-    modules: Array<Module>;
-    logLevel: string; // TODO make enum; and this can be hidden behind logger
-    logger: any;
+    private _user: User;
+    private _modules: Array<Module>;
+    private _logger: Logger;
 
-    /** @deprecated */
-    setUser(user: User) {
-        this.user = user;
+    get user(): User {
+        return this._user;
     }
 
-    /** @deprecated */
-    getUser(): User {
-        return this.user;
+    set user(user: User) {
+        this._user = user;
     }
 
-    /** @deprecated */
-    setModules(modules: Array<Module>) {
-        this.modules = modules;
+    get modules(): Array<Module> {
+        return this._modules;
     }
 
-    /** @deprecated */
-    getModules(): Array<Module> {
-        return this.modules;
+    set modules(modules: Array<Module>) {
+        this._modules = modules;
     }
 
-    /** @deprecated */
+    get logger(): Logger {
+        return this._logger;
+    }
+
+    set logger(logger: Logger) {
+        this._logger = logger;
+    }
+
     getModule(id): Module {
-        for (let mod of this.modules) {
+        for (let mod of this._modules) {
             if (mod.id === id) {
                 return mod;
             }
@@ -39,24 +42,5 @@ export class Context {
         return null;
     }
 
-    /** @deprecated */
-    setLogLevel(logLevel: string) {
-        this.logLevel = logLevel;
-    }
-
-    /** @deprecated */
-    getLogLevel(): string {
-        return this.logLevel
-    }
-
-    /** @deprecated */
-    setLogger(logger: any) {
-        this.logger = logger;
-    }
-
-    /** @deprecated */
-    getLogger(): any {
-        return this.logger;
-    }
 }
 

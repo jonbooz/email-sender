@@ -28,7 +28,7 @@ describe('engine/processors/ModuleProcessor', () => {
         const modules = MODULES['test'];
 
         const context = new Context();
-        context.setUser(user);
+        context.user = user;
 
         const dataStore = { };
         dataStore.getModules = async (user) => new Promise((resolve, reject) => resolve(modules));

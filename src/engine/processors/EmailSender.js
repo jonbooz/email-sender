@@ -25,7 +25,7 @@ module.exports = class EmailSender {
      * @param {Context} context 
      */
     async process(messageBody, context) {
-        const recipients = [context.getUser().email];
+        const recipients = [context.user.email];
         const subjectToSend = EMAIL_SUBJECT + ' - ' + datetime.create().format('m/d/Y');
         await this._aws.ses.sendEmail(subjectToSend, messageBody, EMAIL_SOURCE, recipients);
         return messageBody;

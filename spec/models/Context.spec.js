@@ -3,6 +3,8 @@ const expect = require('chai').expect;
 
 const Module = require('../../src/models/Module.js').Module;
 const User = require('../../src/models/User.js').User;
+const LogLevel = require('../../src/utils/logging/LogLevel.js').LogLevel;
+const ConsoleLogger = require('../../src/utils/logging/ConsoleLogger.js').ConsoleLogger;
 
 const Context = require('../../src/models/Context.js').Context;
 
@@ -21,8 +23,8 @@ describe('models/Context', () => {
     it('handles users', () => {
         const user = new User(USERS['test']);
         const context = new Context();
-        context.setUser(user);
-        expect(context.getUser()).to.eql(user); 
+        context.user = user;
+        expect(context.user).to.eql(user);
     });
 
     it('handles modules', () => {
@@ -32,8 +34,8 @@ describe('models/Context', () => {
         }
 
         const context = new Context();
-        context.setModules(modules);
-        expect(context.getModules()).to.eql(modules);
+        context.modules = modules;
+        expect(context.modules).to.eql(modules);
     });
 
     it('can get a module by id', () => {
@@ -43,23 +45,17 @@ describe('models/Context', () => {
         }
 
         const context = new Context();
-        context.setModules(modules);
+        context.modules = modules;
 
         const mod = context.getModule('jonbooz/dokkodo');
 
         expect(mod).to.eql(modules[0]);
     });
 
-    it('handles log levels', () => {
-        const expected = 'debug';
-        const context = new Context();
-        context.setLogLevel(expected);
-        expect(context.getLogLevel()).to.eql(expected);
-    });
-
     it('handles loggers', () => {
         const context = new Context();
-        context.setLogger(console);
-        expect(context.getLogger()).to.eql(console);
+        const logger = new ConsoleLogger(LogLevel.Error);
+        context.logger = logger;
+        expect(context.logger).to.eql(logger);
     });
 })

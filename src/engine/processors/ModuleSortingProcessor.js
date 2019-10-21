@@ -15,7 +15,7 @@ module.exports = class ModuleSortingProcessor {
      * @param {Context} context 
      */
     async process(modules, context) {
-        const user = context.getUser();
+        const user = context.user;
         const modulesByName = { };
         for (let i in modules) {
             let module = modules[i];

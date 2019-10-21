@@ -16,8 +16,6 @@ afterEach(() => {
 describe('engine/Engine', () => {
     it("runs the processors", async () => {
         const context = new Context();
-        context.setLogLevel('error');
-        context.setLogger(console);
 
         const engine = new Engine({ process: async (i, c) => 1});
         const output = await engine.run(context);

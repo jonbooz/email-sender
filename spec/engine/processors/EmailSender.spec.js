@@ -23,7 +23,7 @@ describe('engine/processors/EmailSender', () => {
         const user = new User(USERS['test']);
 
         const context = new Context();
-        context.setUser(user);
+        context.user = user;
 
         const aws = { };
         aws.ses = { };

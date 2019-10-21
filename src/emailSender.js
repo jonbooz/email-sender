@@ -18,9 +18,8 @@ const emailSenderHandler = async function(event, ctx, callback) {
 
     const user = await environment.getDataStore().getUser(userName);
     const context = new Context();
-    context.setUser(user);
-    context.setLogLevel(environment.getLogLevel());
-    context.setLogger(environment.getLogger());
+    context.user = user;
+    context.logger = environment.getLogger();
 
     await engine.run(context);
 };

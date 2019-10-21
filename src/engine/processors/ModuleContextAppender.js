@@ -10,7 +10,7 @@ module.exports = class ModuleContextAppender {
      * @param {Context} context 
      */
     async process(modules, context) {
-        context.setModules(modules);
+        context.modules = modules;
         return modules;
     }
 };

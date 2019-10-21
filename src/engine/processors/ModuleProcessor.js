@@ -16,7 +16,7 @@ module.exports = class ModuleProcessor {
      * @param {Context} context 
      */
     async process(modules, context) {
-        const user = context.getUser();
+        const user = context.user;
         const entries = [ ];
         for (let i in modules) {
             const module = modules[i];
