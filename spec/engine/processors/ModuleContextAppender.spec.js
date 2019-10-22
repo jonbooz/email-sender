@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 
 const Context = require('../../../src/models/Context.js').Context;
 
-const ModuleContextAppender = require('../../../src/engine/processors/ModuleContextAppender.js');
+const ModuleContextAppender = require('../../../src/engine/processors/ModuleContextAppender.js').ModuleContextAppender;
 
 const EXPECTED_INPUT = require('../../../../../test-data/processor-output-ModuleRetriever.json');
 const EXPECTED_OUTPUT = require('../../../../../test-data/processor-output-ModuleContextAppender.json');

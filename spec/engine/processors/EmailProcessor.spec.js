@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const EmailProcessor = require('../../../src/engine/processors/EmailProcessor.js');
+const EmailProcessor = require('../../../src/engine/processors/EmailProcessor.js').EmailProcessor;
 
 const EXPECTED_INPUT = require('../../../../../test-data/processor-output-EntryProcessor.json');
 const EXPECTED_OUTPUT = require('../../../../../test-data/processor-output-EmailProcessor.json');

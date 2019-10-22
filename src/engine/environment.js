@@ -8,20 +8,20 @@ const LogLevel = require('../utils/logging/Logger.js').LogLevel;
 
 ////
 // Processors
-const MultiProcessor = require('./processors/MultiProcessor.js');
-const ModuleRetriever = require('./processors/ModuleRetriever.js');
-const ModuleContextAppender = require('./processors/ModuleContextAppender.js');
-const ModuleSortingProcessor = require('./processors/ModuleSortingProcessor.js');
-const ModuleProcessor = require('./processors/ModuleProcessor.js');
-const EntryProcessor = require('./processors/EntryProcessor.js');
-const EmailProcessor = require('./processors/EmailProcessor.js');
-const EmailSender = require('./processors/EmailSender.js');
-const UserUpdateProcessor = require('./processors/UserUpdateProcessor.js');
+const MultiProcessor = require('./processors/MultiProcessor.js').MultiProcessor;
+const ModuleRetriever = require('./processors/ModuleRetriever.js').ModuleRetriever;
+const ModuleContextAppender = require('./processors/ModuleContextAppender.js').ModuleContextAppender;
+const ModuleSortingProcessor = require('./processors/ModuleSortingProcessor.js').ModuleSortingProcessor;
+const ModuleProcessor = require('./processors/ModuleProcessor.js').ModuleProcessor;
+const EntryProcessor = require('./processors/EntryProcessor.js').EntryProcessor;
+const EmailProcessor = require('./processors/EmailProcessor.js').EmailProcessor;
+const EmailSender = require('./processors/EmailSender.js').EmailSender;
+const UserUpdateProcessor = require('./processors/UserUpdateProcessor.js').UserUpdateProcessor;
 
 ////
 // Formatters
-const TextFormatter = require('./processors/entryFormatter/TextFormatter.js');
-const ImageBlobFormatter = require('./processors/entryFormatter/ImageBlobFormatter.js');
+const TextFormatter = require('./processors/entryFormatter/TextFormatter.js').TextFormatter;
+const ImageBlobFormatter = require('./processors/entryFormatter/ImageBlobFormatter.js').ImageBlobFormatter;
 
 module.exports = class Environment {
     constructor() {

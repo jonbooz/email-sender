@@ -1,33 +1,24 @@
-'use strict';
-
-const Context = require('../../models/Context.js');
-const DataStore = require('../../services/DataStore.js');
+import {Context} from "../../models/Context";
+import {DataStore} from "../../services/DataStore";
+import {Processor} from "./Processor";
+import {User} from "../../models/User";
 
 /**
  * This processor updates the user's active module
  * records after having sent the user a new email.
  */
-module.exports = class UserUpdateProcessor {
-    /**
-     * 
-     * @param {DataStore} dataStore 
-     */
-    constructor(dataStore) {
-        this._dataStore = dataStore;
-    }
+export class UserUpdateProcessor implements Processor<any, User> {
 
-    /**
-     * 
-     * @param {*} input 
-     * @param {Context} context 
-     */
-    async process(input, context) {
+    constructor(private readonly _dataStore: DataStore) { }
+
+    async process(input: any, context: Context): Promise<User> {
         const user = context.user;
-        for (let i in user.activeModules) {
-            let activeModule = user.activeModules[i];
+        for (let activeModule of user.activeModules) {
             if (activeModule.repeats < 0) {
                 continue;
-            } else if (activeModule.times < activeModule.repeats) {
+            }
+
+            if (activeModule.times < activeModule.repeats) {
                 activeModule.times += 1;
             } else {
                 let mod = context.getModule(activeModule.name);
@@ -42,4 +33,5 @@ module.exports = class UserUpdateProcessor {
         await this._dataStore.saveUser(user);
         return user;
     }
-};
+
+}

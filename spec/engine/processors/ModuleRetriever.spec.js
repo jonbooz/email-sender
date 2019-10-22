@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const Context = require('../../../src/models/Context.js').Context;
 const User = require('../../../src/models/User.js').User;
 
-const ModuleRetriever = require('../../../src/engine/processors/ModuleRetriever.js');
+const ModuleRetriever = require('../../../src/engine/processors/ModuleRetriever.js').ModuleRetriever;
 
 const USERS = require('../../../../../test-data/users.json');
 const MODULES = require('../../../../../test-data/modules.json');

@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const Context = require('../../../src/models/Context.js').Context;
 const User = require('../../../src/models/User.js').User;
 
-const EmailSender = require('../../../src/engine/processors/EmailSender.js');
+const EmailSender = require('../../../src/engine/processors/EmailSender.js').EmailSender;
 
 const USERS = require('../../../../../test-data/users.json');
 

@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const Context = require('../../../src/models/Context.js').Context;
 const User = require('../../../src/models/User.js').User;
 
-const UserUpdateProcessor = require('../../../src/engine/processors/UserUpdateProcessor.js');
+const UserUpdateProcessor = require('../../../src/engine/processors/UserUpdateProcessor.js').UserUpdateProcessor;
 
 const USERS = require('../../../../../test-data/users.json');
 const MODULES = require('../../../../../test-data/modules.json');
