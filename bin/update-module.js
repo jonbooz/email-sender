@@ -1,9 +1,9 @@
 #!/usr/local/bin/node
 
-const Environment = require('../src/engine/environment.js');
-const User = require('../src/models/User.js');
-const Module = require('../src/models/Module.js');
-const ActiveModule = require('../src/models/ActiveModule.js');
+const Environment = require('../build/tsc/src/engine/environment.js');
+const User = require('../build/tsc/src/models/User.js').User;
+const Module = require('../build/tsc/src/models/Module.js').Module;
+const ActiveModule = require('../build/tsc/src/models/ActiveModule.js').ActiveModule;
 
 const env = new Environment();
 const dataStore = env.getDataStore();

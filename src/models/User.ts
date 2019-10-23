@@ -25,4 +25,12 @@ export class User {
         return this._activeModuleSet.hasOwnProperty(id);
     }
 
+    getDataForSaving(): Dictionary<any> {
+        return {
+            name: this.name,
+            email: this.email,
+            activeModules: this.activeModules
+        }
+    }
+
 }

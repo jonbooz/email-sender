@@ -3,7 +3,7 @@ import * as AwsUtils from 'aws-utils';
 import { User } from '../models/User';
 import { Module } from '../models/Module';
 
-const STACK_NAME = 'email-sender';
+const STACK_NAME = 'email-sender-node';
 const USERS_TABLE = 'usersTable';
 const MODULES_TABLE = 'modulesTable';
 
@@ -26,7 +26,7 @@ export class DataStore {
 
     async saveUser(user: User) {
         let resources = await this.aws.listStackResources(STACK_NAME);
-        await this.aws.ddb.save(resources[USERS_TABLE], user);
+        await this.aws.ddb.save(resources[USERS_TABLE], user.getDataForSaving());
     }
 
     async getModule(id: string): Promise<Module> {

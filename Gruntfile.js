@@ -9,14 +9,14 @@ module.exports = function(grunt) {
             },
             createStack: {
                 action: 'create-stack',
-                stackName: 'email-sender',
-                deleteIfExists: true,
+                stackName: 'email-sender-node',
+                deleteIfExists: false,
                 capabilities: ['CAPABILITY_IAM'],
-                src: ['cloudFormation/email-sender.json']
+                src: ['cloudFormation/bootstrap.json']
             },
             updateStack: {
                 action: 'update-stack',
-                stackName: 'email-sender',
+                stackName: 'email-sender-node',
                 capabilities: ['CAPABILITY_IAM'],
                 src: ['cloudFormation/email-sender.json']
             }
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         aws_s3: {
             dist: {
                 options: {
-                    bucket: 'email-sender-code-us-west-2-888557227313'
+                    bucket: 'email-sender-node-code-us-west-2-888557227313'
                 },
                 files: [
                     {
@@ -93,7 +93,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-aws-cloudformation');
     grunt.loadNpmTasks('grunt-aws-s3');
 
-    grunt.registerTask('create-stack', ['cloudformation:createStack']);
+    grunt.registerTask('create-stack', ['cloudformation:createStack', 'dist', 'upload', 'cloudformation:updateStack']);
     grunt.registerTask('update-stack', ['cloudformation:updateStack']);
 
     grunt.registerTask('test', ['jshint']);
