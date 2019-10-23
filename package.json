@@ -1,5 +1,5 @@
 {
-    "name": "email-sender",
+    "name": "es-remote-auto-art",
     "version": "0.0.1",
     "authors": [
         "Jonathan Booz <jon@jonbooz.com>"
@@ -10,36 +10,15 @@
     "ignore": [
         "**/.*",
         "build",
-        "node_modules",
-        "test",
-        "tests"
+        "node_modules"
     ],
-    "scripts": {
-        "test": "npm run test-unit",
-        "test-unit": "NODE_ENV=test mocha --require co-mocha 'spec/**/*.spec.js'",
-        "test-integ": "NODE_ENV=test mocha --require co-mocha 'spec/**/*.integ.js'"
-    },
-    "dependencies": {
-        "aws-utils": "git+ssh://git@github.com:jonbooz/aws-utils.git",
-        "credentials": "git+ssh://git@github.com:jonbooz/credentials.git",
-        "node-datetime": "latest",
-        "aws-sdk": "latest",
-        "readline-sync": "latest"
-    },
     "devDependencies": {
         "grunt": "latest",
         "grunt-contrib-clean": "latest",
-        "grunt-contrib-jshint": "latest",
         "grunt-contrib-copy": "latest",
         "grunt-exec": "latest",
         "grunt-contrib-compress": "latest",
         "grunt-aws-cloudformation": "latest",
-        "grunt-aws-s3": "latest",
-        "mocha": "latest",
-        "co-mocha": "latest",
-        "chai": "latest",
-        "sinon": "latest",
-        "@types/chai": "latest",
-        "@types/mocha": "latest"
+        "grunt-aws-s3": "latest"
     }
 }

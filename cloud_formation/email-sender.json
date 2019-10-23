@@ -135,38 +135,17 @@
         "emailSenderLambda": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
-                "Handler": "emailSender.handler",
+                "Handler": "main",
                 "Role": { "Fn::GetAtt": ["lambdaRole", "Arn"] },
                 "Code": {
                     "S3Bucket": { "Ref": "codeBucket" },
                     "S3Key": "email-sender.zip"
                 },
-                "Runtime": "nodejs10.x",
+                "Runtime": "go1.x",
                 "Timeout": 300,
                 "TracingConfig": {
                     "Mode": "Active"
                 }
-            }
-        },
-        "emailSenderTrigger": {
-            "Type": "AWS::Events::Rule",
-            "Properties": {
-                "Description": "ScheduleRule",
-                "ScheduleExpression": "cron(0 12 ? * * *)",
-                "State": "ENABLED",
-                "Targets": [{
-                    "Arn": { "Fn::GetAtt": ["emailSenderLambda", "Arn"] },
-                    "Id": "emailSenderV1-defaultj"
-                }]
-            }
-        },
-        "PermissionForEventsToInvokeEmailSenderLambda": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-                "FunctionName": { "Ref": "emailSenderLambda" },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "events.amazonaws.com",
-                "SourceArn": { "Fn::GetAtt": ["emailSenderTrigger", "Arn"] }
             }
         }
 

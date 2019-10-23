@@ -10,15 +10,15 @@ module.exports = function(grunt) {
             createStack: {
                 action: 'create-stack',
                 stackName: 'email-sender',
-                deleteIfExists: true,
+                deleteIfExists: false,
                 capabilities: ['CAPABILITY_IAM'],
-                src: ['cloudFormation/email-sender.json']
+                src: ['cloud_formation/bootstrap.json']
             },
             updateStack: {
                 action: 'update-stack',
                 stackName: 'email-sender',
                 capabilities: ['CAPABILITY_IAM'],
-                src: ['cloudFormation/email-sender.json']
+                src: ['cloud_formation/email-sender.json']
             }
         },
 
@@ -38,33 +38,15 @@ module.exports = function(grunt) {
             },
         },
 
-        jshint: {
-            gruntfile: "Gruntfile.js",
-            src: ["src/**/*.js"],
-            options: {
-                esversion: 8,
-                node: true,
-                '-W053': true,
-                '-W083': true
-            }
-        },
-        copy: {
-            js: {
-                files: [
-                    {expand: true, cwd: 'src/', src: ['**/*'], dest: 'build/email-sender/'},
-                    {expand: true, src: ['package.json'], dest: 'build/'}
-                ]
-            },
-            modules: {
-                files: [
-                    {expand: true, cwd: 'build', src: ['node_modules/**'], dest: 'build/email-sender/'}
-                ]
-            }
-        },
         exec: {
-            install_modules: {
-                cwd: 'build/',
-                cmd: 'npm install --production'
+            get_deps: {
+                cmd: 'go get github.com/aws/aws-lambda-go/lambda'
+            },
+            compile_local: {
+                cmd: 'go build -o build/main github.com/jonbooz/email-sender/main'
+            },
+            compile_remote: {
+                cmd: 'GOOS=linux go build -o build/main github.com/jonbooz/email-sender/main'
             }
         },
         compress: {
@@ -73,8 +55,8 @@ module.exports = function(grunt) {
                     archive: 'build/email-sender.zip'
                 },
                 expand: true,
-                cwd: 'build/email-sender/',
-                src: ['**/*'],
+                cwd: 'build/',
+                src: ['main'],
                 dest: '/'
             }
         },
@@ -83,23 +65,21 @@ module.exports = function(grunt) {
 
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-aws-cloudformation');
     grunt.loadNpmTasks('grunt-aws-s3');
 
-    grunt.registerTask('create-stack', ['cloudformation:createStack']);
+    grunt.registerTask('create-stack', ['cloudformation:createStack', 'release', 'upload', 'cloudformation:updateStack']);
     grunt.registerTask('update-stack', ['cloudformation:updateStack']);
 
-    grunt.registerTask('test', ['jshint']);
-    grunt.registerTask('js', ['test', 'copy:js']);
-    grunt.registerTask('dist', ['clean', 'js', 'exec:install_modules', 'copy:modules']);
+    grunt.registerTask('deps', ['exec:get_deps']);
+    grunt.registerTask('release', ['clean', 'deps', 'exec:compile_remote']);
     grunt.registerTask('upload', ['compress', 'aws_s3:dist']);
 
     // Default task(s).
-    grunt.registerTask('default', ['dist', 'upload']);
-    grunt.registerTask('debug', ['test', 'js']);
+    grunt.registerTask('default', ['release', 'upload']);
+    grunt.registerTask('debug', ['clean', 'deps', 'exec:compile_local']);
 
 };
