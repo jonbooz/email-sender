@@ -44,7 +44,7 @@ describe('services/DataStore', () => {
         const expectedUser = new User(USERS['test']);
         const expectedValues = {
             table: RESOURCES['usersTable'],
-            user: expectedUser
+            user: expectedUser.getDataForSaving()
         };
 
         const aws = { };
