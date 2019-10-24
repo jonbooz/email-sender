@@ -3,7 +3,7 @@ import * as AwsUtils from 'aws-utils';
 import { User } from '../models/User';
 import { Module } from '../models/Module';
 
-const STACK_NAME = 'email-sender-node';
+const STACK_NAME = 'email-sender';
 const USERS_TABLE = 'usersTable';
 const MODULES_TABLE = 'modulesTable';
 

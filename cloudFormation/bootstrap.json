@@ -1,12 +1,12 @@
 {
     "AWSTemplateFormatVersion" : "2010-09-09",
-    "Description" : "CloudFormation template to create email-sender-node and common resources.",
+    "Description" : "CloudFormation template to create email-sender and common resources.",
     "Resources": {
         "codeBucket": {
             "Type": "AWS::S3::Bucket",
 			"Properties": {
 				"BucketName": {
-					"Fn::Sub": "email-sender-node-code-${AWS::Region}-${AWS::AccountId}"
+					"Fn::Sub": "email-sender-code-${AWS::Region}-${AWS::AccountId}"
 				}
 			}
         }

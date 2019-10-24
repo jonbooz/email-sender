@@ -9,14 +9,14 @@ module.exports = function(grunt) {
             },
             createStack: {
                 action: 'create-stack',
-                stackName: 'email-sender-node',
+                stackName: 'email-sender',
                 deleteIfExists: false,
                 capabilities: ['CAPABILITY_IAM'],
                 src: ['cloudFormation/bootstrap.json']
             },
             updateStack: {
                 action: 'update-stack',
-                stackName: 'email-sender-node',
+                stackName: 'email-sender',
                 capabilities: ['CAPABILITY_IAM'],
                 src: ['cloudFormation/email-sender.json']
             }
@@ -68,6 +68,9 @@ module.exports = function(grunt) {
             install_modules: {
                 cwd: 'build/',
                 cmd: 'npm install --production'
+            },
+            update_lambda_code: {
+                cmd: 'aws lambda update-function-code --function-name "email-sender-emailSenderLambda-V8HPWNN7JL6D" --s3-bucket "email-sender-node-code-us-west-2-888557227313" --s3-key "email-sender.zip"'
             }
         },
         compress: {
@@ -99,7 +102,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['jshint']);
     grunt.registerTask('js', ['test', 'exec:tsc', 'copy:js']);
     grunt.registerTask('dist', ['clean', 'js', 'exec:install_modules', 'copy:modules']);
-    grunt.registerTask('upload', ['compress', 'aws_s3:dist']);
+    grunt.registerTask('upload', ['compress', 'aws_s3:dist', 'exec:update_lambda_code']);
 
     // Default task(s).
     grunt.registerTask('default', ['dist', 'upload']);

@@ -10,7 +10,9 @@ const emailSenderHandler = async function(event, ctx, callback) {
     const engine = environment.getEngine();
 
     let userName = null;
-    if (event.hasOwnProperty('user')) {
+    if (event.hasOwnProperty('context')) {
+        userName = event.context.user.name;
+    } else if (event.hasOwnProperty('user')) {
         userName = event.user;
     } else {
         userName = DEFAULT_USER;
