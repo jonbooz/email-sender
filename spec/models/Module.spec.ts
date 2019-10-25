@@ -1,7 +1,7 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
+import * as sinon from 'sinon';
+import {expect} from 'chai';
 
-const Module = require('../../src/models/Module.js').Module;
+import {Module} from "../../src/models/Module";
 
 const MODULES = require('../../../../test-data/modules.json');
 

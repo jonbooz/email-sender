@@ -18,6 +18,7 @@
         "tsc": "tsc",
         "driver": "tsc && node ./build/tsc/src/driver.js",
         "test": "tsc && npm run test-unit",
+        "just-test": "npm run test-unit",
         "test-unit": "NODE_ENV=test mocha --require co-mocha 'build/tsc/spec/**/*.spec.js'",
         "test-integ": "NODE_ENV=test mocha --require co-mocha 'build/tsc/spec/**/*.integ.js'"
     },

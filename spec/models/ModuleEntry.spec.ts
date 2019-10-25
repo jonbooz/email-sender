@@ -1,7 +1,7 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
+import * as sinon from 'sinon';
+import {expect} from 'chai';
 
-const ModuleEntry = require('../../src/models/ModuleEntry.js').ModuleEntry;
+import {ModuleEntry} from "../../src/models/ModuleEntry";
 
 beforeEach(() => {
     this.sandbox = sinon.createSandbox();

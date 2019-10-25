@@ -1,9 +1,9 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
+import * as sinon from 'sinon';
+import {expect} from 'chai';
 
-const ActiveModule = require('../../src/models/ActiveModule.js').ActiveModule;
+import {ActiveModule} from "../../src/models/ActiveModule";
 
-const User = require('../../src/models/User.js').User;
+import {User} from '../../src/models/User';
 
 const USERS = require('../../../../test-data/users.json');
 

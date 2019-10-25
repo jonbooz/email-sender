@@ -65,6 +65,9 @@ module.exports = function(grunt) {
             tsc: {
                 cmd: 'tsc'
             },
+            tests: {
+                cmd: 'npm run just-test'
+            },
             install_modules: {
                 cwd: 'build/',
                 cmd: 'npm install --production'
@@ -100,7 +103,7 @@ module.exports = function(grunt) {
     grunt.registerTask('update-stack', ['cloudformation:updateStack']);
 
     grunt.registerTask('test', ['jshint']);
-    grunt.registerTask('js', ['test', 'exec:tsc', 'copy:js']);
+    grunt.registerTask('js', ['test', 'exec:tsc', 'exec:tests', 'copy:js']);
     grunt.registerTask('dist', ['clean', 'js', 'exec:install_modules', 'copy:modules']);
     grunt.registerTask('upload', ['compress', 'aws_s3:dist', 'exec:update_lambda_code']);
 

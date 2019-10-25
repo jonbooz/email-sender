@@ -1,12 +1,12 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
+import * as sinon from 'sinon';
+import {expect} from 'chai';
 
-const Module = require('../../src/models/Module.js').Module;
-const User = require('../../src/models/User.js').User;
-const LogLevel = require('../../src/utils/logging/LogLevel.js').LogLevel;
-const ConsoleLogger = require('../../src/utils/logging/ConsoleLogger.js').ConsoleLogger;
+import {Module} from '../../src/models/Module';
+import {User} from '../../src/models/User';
+import {LogLevel} from "../../src/utils/logging/Logger";
+import {ConsoleLogger} from "../../src/utils/logging/ConsoleLogger";
 
-const Context = require('../../src/models/Context.js').Context;
+import {Context} from "../../src/models/Context";
 
 const MODULES = require('../../../../test-data/modules.json');
 const USERS = require('../../../../test-data/users.json');
