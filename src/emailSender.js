@@ -1,6 +1,6 @@
 'use strict';
 
-const Environment = require('./engine/environment.js');
+const Environment = require('./engine/environment.js').Environment;
 const Context = require('./models/Context.js').Context;
 
 const DEFAULT_USER = "jonbooz";
