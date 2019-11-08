@@ -1,6 +1,6 @@
 #!/usr/local/bin/node
 
-const Environment = require('../build/tsc/src/engine/environment.js');
+const Environment = require('../build/tsc/src/engine/environment.js').Environment;
 const User = require('../build/tsc/src/models/User.js').User;
 const Module = require('../build/tsc/src/models/Module.js').Module;
 const ActiveModule = require('../build/tsc/src/models/ActiveModule.js').ActiveModule;
