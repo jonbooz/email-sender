@@ -1,13 +1,12 @@
 'use strict';
 
 const Environment = require('./engine/environment.js').Environment;
-const Context = require('./models/Context.js').Context;
+const Record = require('./models/Record').Record;
 
 const DEFAULT_USER = "jonbooz";
 
+
 const emailSenderHandler = async function(event, ctx, callback) {
-    const environment = new Environment();
-    const engine = environment.getEngine();
 
     let userName = null;
     if (event.hasOwnProperty('context')) {
@@ -18,12 +17,9 @@ const emailSenderHandler = async function(event, ctx, callback) {
         userName = DEFAULT_USER;
     }
 
-    const user = await environment.getDataStore().getUser(userName);
-    const context = new Context();
-    context.user = user;
-    context.logger = environment.getLogger();
+    const environment = new Environment();
+    await environment.getProcess().send(new Record(userName));
 
-    await engine.run(context);
 };
 
 exports.handler = emailSenderHandler;

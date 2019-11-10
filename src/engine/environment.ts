@@ -6,6 +6,8 @@ import {ConsoleLogger} from "../utils/logging/ConsoleLogger";
 import {Logger, LogLevel} from "../utils/logging/Logger";
 import { Dictionary } from "lodash";
 import {EmailSenderEngine} from "./engine";
+import {Record} from "../models/Record";
+import {BoundModule} from "../models/BoundModule";
 
 ////
 // Processors
@@ -25,6 +27,21 @@ import {Formatter} from "./processors/entryFormatter/Formatter";
 import {TextFormatter} from "./processors/entryFormatter/TextFormatter";
 import {ImageBlobFormatter} from "./processors/entryFormatter/ImageBlobFormatter";
 import {MultiProcessor} from "./processors/MultiProcessor";
+import {InOrderProcess} from "./processes/InOrderProcess";
+
+////
+// Processes
+import {GetAndBindData} from "./processes/GetAndBindData";
+import {ForkJoinProcess} from "./processes/ForkJoinProcess";
+import {HandleModules} from "./processes/HandleModules";
+import {ActiveModuleFilter} from "./processes/ActiveModuleFilter";
+import {ResolveCurrentEntry} from "./processes/ResolveCurrentEntry";
+import {FormatEntry} from "./processes/FormatEntry";
+import {FormatEmailHtml} from "./processes/formatter/FormatEmailHtml";
+import {SendEmail} from "./processes/SendEmail";
+import {SortModules} from "./processes/SortModules";
+import {UpdateUser} from "./processes/UpdateUser";
+import {StringFormatter} from "./processes/formatter/StringFormatter";
 
 export class Environment {
     private aws: AwsUtils;
@@ -32,6 +49,7 @@ export class Environment {
     private logger: Logger;
     private formatters: Dictionary<Formatter>;
     private processors: Array<Processor<any,any>>;
+    private process: InOrderProcess<Record>;
     private engine: EmailSenderEngine;
 
     getAws(): AwsUtils {
@@ -64,6 +82,25 @@ export class Environment {
             new EmailSender(this.getAws()),
             new UserUpdateProcessor(this.getDataStore())
         ]);
+    }
+
+    getProcess() {
+        return this.bean('process', () => {
+            return new InOrderProcess<Record>([
+                new GetAndBindData(this),
+                new ActiveModuleFilter(),
+                new HandleModules(new InOrderProcess<BoundModule>([
+                    new ResolveCurrentEntry(),
+                    new FormatEntry({
+                        'text': new StringFormatter()
+                    })
+                ])),
+                new SortModules(),
+                new FormatEmailHtml(),
+                new SendEmail(this.getAws()),
+                new UpdateUser(this)
+            ]);
+        })
     }
 
     getEngine() {
