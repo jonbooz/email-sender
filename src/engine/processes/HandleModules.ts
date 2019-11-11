@@ -3,6 +3,13 @@ import {Record} from "../../models/Record";
 import {ForkJoinProcess} from "./ForkJoinProcess";
 import {BoundModule} from "../../models/BoundModule";
 
+/**
+ * For each Module in the Record, execute the given child
+ * process concurrently.
+ *
+ * This follows the practice of the ForkJoinProcess which
+ * will discard any Module that throws an error.
+ */
 export class HandleModules extends Process<Record, Record> {
 
     private readonly _forkJoin: ForkJoinProcess<BoundModule>;

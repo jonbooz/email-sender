@@ -3,6 +3,15 @@ import {Process} from "./Process";
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
+/**
+ * Run the given child process concurrently for all elements in
+ * the message.
+ *
+ * This implementation will ignore any element whose execution
+ * throws an exception and return those that succeed.
+ *
+ * TODO handle logging for failed elements?
+ */
 export class ForkJoinProcess<T> extends Process<Array<T>, Array<T>> {
 
     constructor(private readonly _childProcess: Process<T, T>) {
@@ -10,7 +19,7 @@ export class ForkJoinProcess<T> extends Process<Array<T>, Array<T>> {
     }
 
     protected receive(msg: Array<T>): Promise<Array<T>> {
-        const forked = msg.map(m => this._childProcess.send(m));
+        const forked = msg.map(m => this._childProcess.unsafeSend(m));
 
         // TODO once on 12.9.0 can use Promise.allSettled() instead
         return this.allSettled(forked)

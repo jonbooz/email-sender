@@ -7,6 +7,13 @@ import {Module} from "../../models/Module";
 import {BoundModule} from "../../models/BoundModule";
 import {User} from "../../models/User";
 
+/**
+ * Gets all data required, based only on the current request's
+ * username and binds it to the record.
+ *
+ * On failure, no requests can proceed further and the error will
+ * propagate out.
+ */
 export class GetAndBindData extends Process<Record, Record> {
     private readonly _getUser: GetUser;
     private readonly _getModules: GetModules;

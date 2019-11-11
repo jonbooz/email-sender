@@ -1,10 +1,9 @@
 'use strict';
 
-const Environment = require('./engine/environment.js').Environment;
+const Environment = require('./engine/environment').Environment;
 const Record = require('./models/Record').Record;
 
 const DEFAULT_USER = "jonbooz";
-
 
 const emailSenderHandler = async function(event, ctx, callback) {
 
@@ -18,8 +17,8 @@ const emailSenderHandler = async function(event, ctx, callback) {
     }
 
     const environment = new Environment();
-    await environment.getProcess().send(new Record(userName));
-
+    await environment.getProcess().send(new Record(userName))
+        .catch(reason => console.log(`Error on user: ${userName}: ${reason}`));
 };
 
 exports.handler = emailSenderHandler;

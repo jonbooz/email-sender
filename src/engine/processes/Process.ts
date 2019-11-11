@@ -28,6 +28,16 @@ import { Response } from './Response'
  * further processes. That being said, it can also provide the
  * option of blocking and allow users to decide whether to wait
  * or not.
+ *
+ * Sometimes, it might make sense not to provide copy the data
+ * before sending it, for instance, in a chained process case,
+ * like ForkJoinProcess. In these cases, the
+ * `unsafeSend` method may be used instead. However, caution
+ * should be used because this breaks the no shared state
+ * between processes contract. Basically, it is safe to use the
+ * unsafe send, if the sending process will not make use of the
+ * contents of the message after forwarding it along. If it will
+ * make use of the contents, it should use the safe `send`.
  */
 export abstract class Process<M, R> {
 
@@ -35,6 +45,14 @@ export abstract class Process<M, R> {
         const copy = cloneDeep(msg);
         try {
             return this.receive(copy);
+        } catch (e) {
+            return Promise.reject(e);
+        }
+    }
+
+    unsafeSend(msg: M): Promise<R> {
+        try {
+            return this.receive(msg);
         } catch (e) {
             return Promise.reject(e);
         }

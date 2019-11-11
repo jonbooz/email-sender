@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         aws_s3: {
             dist: {
                 options: {
-                    bucket: 'email-sender-node-code-us-west-2-888557227313'
+                    bucket: 'email-sender-code-us-west-2-888557227313'
                 },
                 files: [
                     {
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
                 cmd: 'npm install --production'
             },
             update_lambda_code: {
-                cmd: 'aws lambda update-function-code --function-name "email-sender-emailSenderLambda-V8HPWNN7JL6D" --s3-bucket "email-sender-node-code-us-west-2-888557227313" --s3-key "email-sender.zip"'
+                cmd: 'aws lambda update-function-code --function-name "email-sender-emailSenderLambda-V8HPWNN7JL6D" --s3-bucket "email-sender-code-us-west-2-888557227313" --s3-key "email-sender.zip"'
             }
         },
         compress: {

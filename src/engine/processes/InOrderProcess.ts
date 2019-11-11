@@ -1,5 +1,11 @@
 import {Process} from "./Process";
 
+/**
+ * Begins executing an in-order series of processes against
+ * the given message, using the response of one process as
+ * the message sent to the following process. The result will
+ * be the response from the last process.
+ */
 export class InOrderProcess<T> extends Process<T, T> {
 
     private readonly _processes: Array<Process<T, T>>;
