@@ -18,7 +18,11 @@ const emailSenderHandler = async function(event, ctx, callback) {
 
     const environment = new Environment();
     await environment.getProcess().send(new Record(userName))
-        .catch(reason => console.log(`Error on user: ${userName}: ${reason}`));
+        .then(_ => true)
+        .catch(reason => {
+            console.log(`Error on user: ${userName}: ${reason}`);
+            return false;
+        });
 };
 
 exports.handler = emailSenderHandler;
