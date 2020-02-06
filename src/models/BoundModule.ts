@@ -2,7 +2,6 @@ import {User} from "./User";
 import {Module} from "./Module";
 import {ActiveModule} from "./ActiveModule";
 import {ModuleEntry} from "./ModuleEntry";
-import {getIfPresent} from "../utils/Contracts";
 import {Optional} from "../utils/Optional";
 
 export class BoundModule {
