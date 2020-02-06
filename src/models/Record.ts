@@ -55,7 +55,7 @@ export class Record {
                 this._modulesById.get().hasOwnProperty(id)) {
             return this._modulesById.get()[id];
         } else {
-            throw new Error('NullPointer');
+            throw new Error('Record.getModule: Unrecognized moduleId: ' + id);
         }
     }
 
