@@ -3,9 +3,9 @@ import { Module } from '../../models/Module'
 import { ModuleEntry } from "../../models/ModuleEntry";
 import { Processor } from "./Processor";
 
-export class ModuleProcessor implements Processor<Module, Array<ModuleEntry>> {
+export class ModuleProcessor implements Processor<Array<Module>, Array<ModuleEntry>> {
 
-    async process(modules: Module, context: Context): Promise<Array<ModuleEntry>> {
+    async process(modules: Array<Module>, context: Context): Promise<Array<ModuleEntry>> {
         const user = context.user;
         const entries = [ ];
         for (let i in modules) {
