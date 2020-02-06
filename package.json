@@ -27,8 +27,7 @@
         "credentials": "git+ssh://git@github.com:jonbooz/credentials.git",
         "node-datetime": "latest",
         "aws-sdk": "latest",
-        "readline-sync": "latest",
-        "csv-writer": "latest"
+        "readline-sync": "latest"
     },
     "devDependencies": {
         "grunt": "latest",
@@ -45,6 +44,8 @@
         "sinon": "latest",
         "@types/chai": "latest",
         "@types/mocha": "latest",
-        "@types/node": "latest"
+        "@types/node": "latest",
+        "csv-writer": "latest",
+        "csv-reader": "latest"
     }
 }
