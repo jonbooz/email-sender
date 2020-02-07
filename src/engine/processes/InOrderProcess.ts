@@ -13,7 +13,7 @@ export class InOrderProcess<T> extends Process<T, T> {
     constructor(processes: Array<Process<T,T>>) {
         super();
         if (processes.length < 1) {
-            throw new Error('IllegalState');
+            throw new Error('InOrderProcess:IllegalState:processes.length');
         } else {
             this._processes = processes;
         }

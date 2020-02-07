@@ -4,7 +4,6 @@ import * as AwsUtils from "aws-utils";
 import {DataStore} from "../services/DataStore";
 import {ConsoleLogger} from "../utils/logging/ConsoleLogger";
 import {Logger, LogLevel} from "../utils/logging/Logger";
-import {EmailSenderEngine} from "./engine";
 import {Record} from "../models/Record";
 import {BoundModule} from "../models/BoundModule";
 
@@ -27,7 +26,6 @@ export class Environment {
     private dataStore: DataStore;
     private logger: Logger;
     private process: InOrderProcess<Record>;
-    private engine: EmailSenderEngine;
 
     getAws(): AwsUtils {
         return this.bean('aws', () => new AwsUtils());

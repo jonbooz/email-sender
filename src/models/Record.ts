@@ -18,7 +18,7 @@ export class Record {
         this._user = Optional.ofNullable(user);
         this._modules = Optional.ofNullable(modules);
         this._email = Optional.ofNullable(email);
-        this._modulesById = this._modules.map(this.setModulesById);
+        this._modulesById = this._modules.map(Record.setModulesById);
     }
 
     get username(): string {
@@ -39,7 +39,7 @@ export class Record {
 
     set modules(m: Array<BoundModule>) {
         this._modules = Optional.of(m);
-        this._modulesById = this._modules.map(this.setModulesById);
+        this._modulesById = this._modules.map(Record.setModulesById);
     }
 
     get email(): string {
@@ -59,7 +59,7 @@ export class Record {
         }
     }
 
-    private setModulesById(modules: Array<BoundModule>): Dictionary<BoundModule> {
+    private static setModulesById(modules: Array<BoundModule>): Dictionary<BoundModule> {
         const pairs = modules.map(m => [m.module.id, m]);
         return fromPairs(pairs);
     }
