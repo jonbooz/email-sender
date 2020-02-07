@@ -10,12 +10,14 @@ export class UpdateUser extends Process<Record, Record> {
     protected receive(msg: Record): Promise<Record> {
         const user = msg.user;
         for (let activeModule of user.activeModules) {
-            const mod = msg.getModule(activeModule.name);
-            let newIndex = activeModule.index + 1;
-            if (newIndex >= mod.module.entries.length) {
-                newIndex = 0;
+            if (msg.hasModule(activeModule.name)) {
+                const mod = msg.getModule(activeModule.name);
+                let newIndex = activeModule.index + 1;
+                if (newIndex >= mod.module.entries.length) {
+                    newIndex = 0;
+                }
+                activeModule.index = newIndex;
             }
-            activeModule.index = newIndex;
         }
         return this._env.getDataStore().saveUser(user)
             .then(() => msg);

@@ -1,3 +1,8 @@
+export enum Include {
+    Always = "always",
+    Limit = "limit"
+}
+
 /**
  * A Module that is active for a given User.
  *
@@ -14,8 +19,22 @@ export class ActiveModule {
      */
     index: number;
 
+    /**
+     * The rate at which this Module should be included.
+     *
+     * Defaults to Include.Always.
+     */
+    include: Include;
+
     constructor(module: object) {
         this.name = module['name'];
         this.index = module['index'];
+
+        if (module.hasOwnProperty('include')) {
+            this.include = module['include'];
+        } else {
+            this.include = Include.Always;
+        }
     }
+
 }

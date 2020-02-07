@@ -20,6 +20,7 @@ import {SortModules} from "./processes/SortModules";
 import {UpdateUser} from "./processes/UpdateUser";
 import {StringFormatter} from "./processes/formatter/StringFormatter";
 import {InOrderProcess} from "./processes/InOrderProcess";
+import {ResolveLimitedModules} from "./processes/ResolveLimitedModules";
 
 export class Environment {
     private aws: AwsUtils;
@@ -44,6 +45,7 @@ export class Environment {
             return new InOrderProcess<Record>([
                 new GetAndBindData(this),
                 new ActiveModuleFilter(),
+                new ResolveLimitedModules(),
                 new HandleModules(new InOrderProcess<BoundModule>([
                     new ResolveCurrentEntry(),
                     new FormatEntry({

@@ -50,6 +50,14 @@ export class Record {
         this._email = Optional.of(e);
     }
 
+    hasModule(id: string): boolean {
+        if (this._modulesById.isPresent()) {
+            return this._modulesById.get().hasOwnProperty(id);
+        } else {
+            throw new Error('Record.hasModule: Record.modules is not initialized correctly.');
+        }
+    }
+
     getModule(id: string): BoundModule {
         if (this._modulesById.isPresent() &&
                 this._modulesById.get().hasOwnProperty(id)) {
