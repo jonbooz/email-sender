@@ -20,8 +20,6 @@ describe('models/ActiveModule', () => {
         const activeModule = new ActiveModule(expected);
 
         expect(activeModule.name).to.eql(expected.name);
-        expect(activeModule.repeats).to.eql(expected.repeats);
         expect(activeModule.index).to.eql(expected.index);
-        expect(activeModule.times).to.eql(expected.times);
     });
 });

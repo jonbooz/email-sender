@@ -1,13 +1,21 @@
+/**
+ * A Module that is active for a given User.
+ *
+ * This model should always be bound to a specific user.
+ */
 export class ActiveModule {
+    /**
+     * A reference to a Module.id
+     */
     name: string;
-    repeats: number;
+
+    /**
+     * The Module.entries index for the next entry to send out.
+     */
     index: number;
-    times: number;
 
     constructor(module: object) {
         this.name = module['name'];
-        this.repeats = module['repeats'];
         this.index = module['index'];
-        this.times = module['times'];
     }
 }
