@@ -2,17 +2,22 @@
 
 const Environment = require('../build/tsc/src/engine/environment').Environment;
 const ActiveModule = require('../build/tsc/src/models/ActiveModule.js').ActiveModule;
+const Include = require('../build/tsc/src/models/ActiveModule.js').Include;
 
 const env = new Environment();
 const dataStore = env.getDataStore();
 
 if (process.argv.length < 5) {
-    throw "Usage: ./edit-user <username> <add|remove> <module_name>"
+    throw "Usage: ./edit-user <username> <add-module|remove-module|set-module|set-max-limited-modules> <module_name|max_limited_modules>";
 }
 
 const username = process.argv[2];
 const action = process.argv[3];
 const moduleName = process.argv[4];
+let option = null;
+if (process.argv.length === 6) {
+    option = process.argv[5];
+}
 
 
 const add = async (user, moduleName) => {
@@ -45,21 +50,49 @@ const remove = (user, moduleName) => {
     return user;
 };
 
+const setModule = (user, moduleName, option) => {
+    if (option === null) {
+        throw "Usage: ./edit-user <username> set-module <module_name> <option>";
+    }
+
+    if (option === Include.Always || option === Include.Limit) {
+        if (user.hasActiveModule(moduleName)) {
+            let mod = user.getActiveModule(moduleName);
+            mod.include = option;
+        } else {
+            throw "User " + user.name + " does not have module " + moduleName;
+        }
+    }
+
+    return user;
+};
+
+const setMaxLimitedModules = (user, maxLimitedModules) => {
+    user.maxLimitedModules = maxLimitedModules;
+    return user;
+};
+
 (async () => {
     let user = await dataStore.getUser(username);
-    if (user == null) {
+    if (user.name === undefined) {
         throw "User " + username + " does not exist.";
     }
 
-    if (action === 'add') {
+    if (action === 'add-module') {
         user = await add(user, moduleName);
-    } else if (action === 'remove') {
+    } else if (action === 'remove-module') {
         user = remove(user, moduleName)
     } else if (action === 'reorder') {
         throw "reorder is not yet supported.";
+    } else if (action === 'set-module') {
+        user = setModule(user, moduleName, option);
+    } else if (action === 'set-max-limited-modules') {
+        user = setMaxLimitedModules(user, moduleName);
     } else {
         throw "Unrecognized action " + action + ". Please select from {add|remove|reorder}";
     }
+
+    console.log(user);
 
     await dataStore.saveUser(user);
 })();
