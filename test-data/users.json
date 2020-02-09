@@ -5,8 +5,14 @@
         "name": "jonbooz"
     },
     "test": {
-        "activeModules": [{"name":"test/dailychallenge","repeats":0,"index":19,"times":0},{"name":"test/dokkodo","repeats":0,"index":19,"times":0},{"name":"test/header","repeats":0,"index":1,"times":0},{"name":"test/thoughts","repeats":0,"index":8,"times":0},{"name":"test/image","repeats":0,"index":0,"times":0}],
+        "activeModules": [
+            {"name":"test/dailychallenge","include":"limit","index":19},
+            {"name":"test/dokkodo","include":"limit","index":19},
+            {"name":"test/header","index":1},
+            {"name":"test/thoughts","include":"limit","index":8}
+        ],
         "email": "jon@jonbooz.com",
-        "name": "test"
+        "name": "test",
+        "maxLimitedModules": 2
     }
 }
