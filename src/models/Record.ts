@@ -51,20 +51,15 @@ export class Record {
     }
 
     hasModule(id: string): boolean {
-        if (this._modulesById.isPresent()) {
-            return this._modulesById.get().hasOwnProperty(id);
-        } else {
-            throw new Error('Record.hasModule: Record.modules is not initialized correctly.');
-        }
+        return this._modulesById
+            .map((mid) => mid.hasOwnProperty(id))
+            .orElseThrow(() => new Error('Record.hasModule: Record.modules is not initialized correctly.'));
     }
 
     getModule(id: string): BoundModule {
-        if (this._modulesById.isPresent() &&
-                this._modulesById.get().hasOwnProperty(id)) {
-            return this._modulesById.get()[id];
-        } else {
-            throw new Error('Record.getModule: Unrecognized moduleId: ' + id);
-        }
+        return this._modulesById
+            .map((mid) => mid[id])
+            .orElseThrow(() => new Error('Record.getModule: Unrecognized moduleId: ' + id));
     }
 
     private static setModulesById(modules: Array<BoundModule>): Dictionary<BoundModule> {

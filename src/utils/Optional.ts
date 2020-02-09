@@ -9,7 +9,7 @@ export class Optional<T> {
 
     static of<T>(val: T): Optional<T> {
         if (val === undefined || val === null) {
-            throw new Error('NullPointer');
+            throw new Error('Optional.of given null reference');
         }
         return new Optional<T>(val);
     }
@@ -24,7 +24,7 @@ export class Optional<T> {
 
     get(): T {
         if (this._empty) {
-            throw new Error('NullPointer');
+            throw new Error('Optional.get on empty');
         } else {
             return this._val;
         }
@@ -45,6 +45,30 @@ export class Optional<T> {
             return Optional.of(callback(this._val));
         } else {
             return Optional.empty();
+        }
+    }
+
+    orElse(other: T): T {
+        if (this.isPresent()) {
+            return this._val;
+        } else {
+            return other;
+        }
+    }
+
+    orElseGet(generator: () => T): T {
+        if (this.isPresent()) {
+            return this._val;
+        } else {
+            return generator();
+        }
+    }
+
+    orElseThrow(errorGenerator: () => Error): T {
+        if (this.isPresent()) {
+            return this._val;
+        } else {
+            throw errorGenerator();
         }
     }
 }
