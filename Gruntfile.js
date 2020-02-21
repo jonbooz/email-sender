@@ -9,14 +9,14 @@ module.exports = function(grunt) {
             },
             createStack: {
                 action: 'create-stack',
-                stackName: 'email-sender',
+                stackName: 'go-email-sender',
                 deleteIfExists: false,
                 capabilities: ['CAPABILITY_IAM'],
                 src: ['cloud_formation/bootstrap.json']
             },
             updateStack: {
                 action: 'update-stack',
-                stackName: 'email-sender',
+                stackName: 'go-email-sender',
                 capabilities: ['CAPABILITY_IAM'],
                 src: ['cloud_formation/email-sender.json']
             }
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         aws_s3: {
             dist: {
                 options: {
-                    bucket: 'email-sender-code-us-west-2-888557227313'
+                    bucket: 'email-sender-go-code-us-west-2-888557227313'
                 },
                 files: [
                     {
@@ -43,10 +43,13 @@ module.exports = function(grunt) {
                 cmd: 'go get github.com/aws/aws-lambda-go/lambda'
             },
             compile_local: {
-                cmd: 'go build -o build/main github.com/jonbooz/email-sender/main'
+                cmd: 'go build -o build/main'
             },
             compile_remote: {
-                cmd: 'GOOS=linux go build -o build/main github.com/jonbooz/email-sender/main'
+                cmd: 'GOOS=linux go build -o build/main'
+            },
+            update_lambda_code: {
+                cmd: 'aws lambda update-function-code --function-name "email-sender-emailSenderLambda-V8HPWNN7JL6D" --s3-bucket "email-sender-go-code-us-west-2-888557227313" --s3-key "email-sender.zip"'
             }
         },
         compress: {
@@ -76,7 +79,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('deps', ['exec:get_deps']);
     grunt.registerTask('release', ['clean', 'deps', 'exec:compile_remote']);
-    grunt.registerTask('upload', ['compress', 'aws_s3:dist']);
+    grunt.registerTask('upload', ['compress', 'aws_s3:dist', 'exec:update_lambda_code']);
 
     // Default task(s).
     grunt.registerTask('default', ['release', 'upload']);

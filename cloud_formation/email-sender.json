@@ -43,7 +43,7 @@
             "Type": "AWS::S3::Bucket",
 			"Properties": {
 				"BucketName": {
-					"Fn::Sub": "email-sender-code-${AWS::Region}-${AWS::AccountId}"
+					"Fn::Sub": "email-sender-go-code-${AWS::Region}-${AWS::AccountId}"
 				}
 			}
         },
