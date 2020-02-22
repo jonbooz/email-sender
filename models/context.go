@@ -12,3 +12,7 @@ type EmailSenderContext struct {
 type EmailSenderRemoteEvent struct {
 	Context EmailSenderContext `json:"context"`
 }
+
+type WebResponse struct {
+	Greeting string `json:"greeting"`
+}

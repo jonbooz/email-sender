@@ -47,6 +47,7 @@
 				}
 			}
         },
+
         "lambdaRole": {
             "Type": "AWS::IAM::Role",
              "Properties": {
@@ -132,6 +133,7 @@
                 ]
             }
         },
+
         "emailSenderLambda": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -168,7 +170,148 @@
                 "Principal": "events.amazonaws.com",
                 "SourceArn": { "Fn::GetAtt": ["emailSenderTrigger", "Arn"] }
             }
-        }
+        },
 
+        "webAppLambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Handler": "web",
+                "Role": { "Fn::GetAtt": ["lambdaRole", "Arn"] },
+                "Code": {
+                    "S3Bucket": { "Ref": "codeBucket" },
+                    "S3Key": "web.zip"
+                },
+                "Runtime": "go1.x",
+                "Timeout": 300,
+                "TracingConfig": {
+                    "Mode": "Active"
+                }
+            }
+        },
+        "webAppApi": {
+            "Type": "AWS::ApiGateway::RestApi",
+            "Properties": {
+                "Name": "EmailSender Web App",
+                "Description": "API used for EmailSender Web requests",
+                "FailOnWarnings": true
+            }
+        },
+        "webAppLambdaPermission": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+                "Action": "lambda:invokeFunction",
+                "FunctionName": {"Fn::GetAtt":  ["webAppLambda", "Arn"]},
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {"Fn::Join": ["",
+                    ["arn:aws:execute-api:", {"Ref": "AWS::Region"}, ":", {"Ref": "AWS::AccountId"}, ":", {"Ref": "webAppApi"}, "/*"]
+                ]}
+            }
+        },
+        "webAppApiStage": {
+            "DependsOn" : ["webAppApiGatewayAccount"],
+            "Type": "AWS::ApiGateway::Stage",
+            "Properties": {
+                "DeploymentId": {"Ref": "webAppApiDeployment"},
+                "MethodSettings": [{
+                    "DataTraceEnabled": true,
+                    "HttpMethod": "*",
+                    "LoggingLevel": "INFO",
+                    "ResourcePath": "/*"
+                }],
+                "RestApiId": {"Ref": "webAppApi"},
+                "StageName": "LATEST"
+            }
+        },
+        "webAppApiGatewayCloudWatchLogsRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [{
+                        "Effect": "Allow",
+                        "Principal": { "Service": ["apigateway.amazonaws.com"] },
+                        "Action": ["sts:AssumeRole"]
+                    }]
+                },
+                "Policies": [{
+                    "PolicyName": "webAppApiGatewayLogsPolicy",
+                    "PolicyDocument": {
+                        "Version": "2012-10-17",
+                        "Statement": [{
+                            "Effect": "Allow",
+                            "Action": [
+                                "logs:CreateLogGroup",
+                                "logs:CreateLogStream",
+                                "logs:DescribeLogGroups",
+                                "logs:DescribeLogStreams",
+                                "logs:PutLogEvents",
+                                "logs:GetLogEvents",
+                                "logs:FilterLogEvents"
+                            ],
+                            "Resource": "*"
+                        }]
+                    }
+                }]
+            }
+        },
+        "webAppApiGatewayAccount": {
+            "Type" : "AWS::ApiGateway::Account",
+            "Properties" : {
+                "CloudWatchRoleArn" : {"Fn::GetAtt" : ["webAppApiGatewayCloudWatchLogsRole", "Arn"] }
+            }
+        },
+        "webAppApiDeployment": {
+            "Type": "AWS::ApiGateway::Deployment",
+            "DependsOn": ["webAppRequest"],
+            "Properties": {
+                "RestApiId": {"Ref": "webAppApi"},
+                "StageName": "DummyStage"
+            }
+        },
+        "webAppResource": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+                "RestApiId": {"Ref": "webAppApi"},
+                "ParentId": {"Fn::GetAtt": ["webAppApi", "RootResourceId"]},
+                "PathPart": "emailSender"
+            }
+        },
+        "webAppRequest": {
+            "DependsOn": "webAppLambdaPermission",
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+                "AuthorizationType": "NONE",
+                "HttpMethod": "GET",
+                "Integration": {
+                    "Type": "AWS",
+                    "IntegrationHttpMethod": "POST",
+                    "Uri": {"Fn::Join" : ["",
+                        ["arn:aws:apigateway:", {"Ref": "AWS::Region"}, ":lambda:path/2015-03-31/functions/", {"Fn::GetAtt": ["webAppLambda", "Arn"]}, "/invocations"]
+                    ]},
+                    "IntegrationResponses": [{
+                        "StatusCode": 200
+                    }],
+                    "RequestTemplates": {
+                        "application/json": {"Fn::Join" : ["", [
+                            "{",
+                            "\"context\": {",
+                            "\"user\": {",
+                            "\"name\": \"$input.params('name')\"",
+                            "}",
+                            "}",
+                            "}"
+                        ]]}
+                    }
+                },
+                "RequestParameters": {
+                    "method.request.querystring.name": false
+                },
+                "ResourceId": {"Ref": "webAppResource"},
+                "RestApiId": {"Ref": "webAppApi"},
+                "MethodResponses": [{
+                    "StatusCode": 200
+                }]
+            }
+        }
     }
 }

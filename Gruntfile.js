@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        cmd: 'build/',
+                        cwd: 'build/',
                         expand: true,
                         src: ['web.zip'],
                         dest: '/'
@@ -88,20 +88,20 @@ module.exports = function(grunt) {
                 cmd: 'npm install --production'
             },
             sender_update_lambda_code: {
-                cmd: 'aws lambda update-function-code --function-name "email-sender-emailSenderLambda-V8HPWNN7JL6D" --s3-bucket "email-sender-code-us-west-2-888557227313" --s3-key "email-sender.zip"'
+                cmd: 'aws lambda update-function-code --function-name "email-sender-emailSenderLambda-V8HPWNN7JL6D" --s3-bucket "email-sender-code-us-west-2-888557227313" --s3-key "sender.zip"'
             },
 
             web_get_deps: {
                 cmd: 'go get'
             },
             web_compile_local: {
-                cmd: 'go build -o build/main'
+                cmd: 'go build -o build/web'
             },
             web_compile_remote: {
-                cmd: 'GOOS=linux go build -o build/main'
+                cmd: 'GOOS=linux go build -o build/web'
             },
             web_update_lambda_code: {
-                cmd: ''
+                cmd: 'aws lambda update-function-code --function-name "email-sender-webAppLambda-19QFTSZVHLLG9" --s3-bucket "email-sender-code-us-west-2-888557227313" --s3-key "web.zip"'
             }
         },
 
@@ -120,8 +120,8 @@ module.exports = function(grunt) {
                     archive: 'build/web.zip'
                 },
                 expand: true,
-                cwd: 'build/web/',
-                src: ['main'],
+                cwd: 'build/',
+                src: ['web'],
                 dest: '/'
             }
         },
@@ -150,7 +150,7 @@ module.exports = function(grunt) {
 
     // The API build scripts
     grunt.registerTask('web-deps', ['exec:web_get_deps']);
-    grunt.registerTask('web-release', ['clean', 'deps', 'exec:web_compile_remote']);
+    grunt.registerTask('web-release', ['clean', 'web-deps', 'exec:web_compile_remote']);
     grunt.registerTask('web-upload', ['compress:web', 'aws_s3:web', 'exec:web_update_lambda_code']);
     grunt.registerTask('web', ['web-release', 'web-upload']);
 
