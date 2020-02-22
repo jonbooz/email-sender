@@ -1,9 +1,9 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {ActiveModule} from "../../src/models/ActiveModule";
+import {ActiveModule} from "../../sender/models/ActiveModule";
 
-import {User} from '../../src/models/User';
+import {User} from '../../sender/models/User';
 
 const USERS = require('../../../../test-data/users.json');
 

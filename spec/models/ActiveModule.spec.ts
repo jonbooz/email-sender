@@ -1,7 +1,7 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {ActiveModule} from "../../src/models/ActiveModule";
+import {ActiveModule} from "../../sender/models/ActiveModule";
 
 const USERS = require('../../../../test-data/users.json');
 

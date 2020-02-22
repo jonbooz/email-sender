@@ -1,10 +1,10 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {BoundModule} from "../../../src/models/BoundModule";
-import {Record} from "../../../src/models/Record";
-import {ActiveModuleFilter} from "../../../src/engine/processes/ActiveModuleFilter";
-import {User} from "../../../src/models/User";
+import {BoundModule} from "../../../sender/models/BoundModule";
+import {Record} from "../../../sender/models/Record";
+import {ActiveModuleFilter} from "../../../sender/engine/processes/ActiveModuleFilter";
+import {User} from "../../../sender/models/User";
 
 const MODULES = require('../../../../../test-data/modules.json');
 const USERS = require('../../../../../test-data/users.json');

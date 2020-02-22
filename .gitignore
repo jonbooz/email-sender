@@ -68,3 +68,5 @@ package-lock.json
 build/
 src/**/*.types.js
 data/
+
+.idea/

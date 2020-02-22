@@ -1,10 +1,10 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 
-const Module = require('../../src/models/Module.js').Module;
-const User = require('../../src/models/User.js').User;
+const Module = require('../../sender/models/Module.js').Module;
+const User = require('../../sender/models/User.js').User;
 
-const DataStore = require('../../src/services/DataStore.js').DataStore;
+const DataStore = require('../../sender/services/DataStore.js').DataStore;
 
 const RESOURCES = require('../../../../test-data/resources.json');
 const USERS = require('../../../../test-data/users.json');

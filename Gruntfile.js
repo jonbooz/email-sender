@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         },
 
         aws_s3: {
-            dist: {
+            sender: {
                 options: {
                     bucket: 'email-sender-code-us-west-2-888557227313'
                 },
@@ -31,16 +31,29 @@ module.exports = function(grunt) {
                     {
                         cwd: 'build/',
                         expand: true,
-                        src: ['email-sender.zip'],
+                        src: ['sender.zip'],
                         dest: '/'
                     }
                 ]
             },
+            web: {
+                options: {
+                    bucket: 'email-sender-code-us-west-2-888557227313'
+                },
+                files: [
+                    {
+                        cmd: 'build/',
+                        expand: true,
+                        src: ['web.zip'],
+                        dest: '/'
+                    }
+                ]
+            }
         },
 
         jshint: {
             gruntfile: "Gruntfile.js",
-            src: ["src/**/*.js"],
+            src: ["sender/**/*.js"],
             options: {
                 esversion: 8,
                 node: true,
@@ -48,10 +61,11 @@ module.exports = function(grunt) {
                 '-W083': true
             }
         },
+
         copy: {
             js: {
                 files: [
-                    {expand: true, cwd: 'build/tsc/src/', src: ['**/*.js'], dest: 'build/email-sender/'},
+                    {expand: true, cwd: 'build/tsc/sender/', src: ['**/*.js'], dest: 'build/email-sender/'},
                     {expand: true, src: ['package.json'], dest: 'build/'}
                 ]
             },
@@ -61,32 +75,57 @@ module.exports = function(grunt) {
                 ]
             }
         },
+
         exec: {
-            tsc: {
+            sender_tsc: {
                 cmd: 'tsc'
             },
-            tests: {
+            sender_tests: {
                 cmd: 'npm run just-test'
             },
-            install_modules: {
+            sender_install_modules: {
                 cwd: 'build/',
                 cmd: 'npm install --production'
             },
-            update_lambda_code: {
+            sender_update_lambda_code: {
                 cmd: 'aws lambda update-function-code --function-name "email-sender-emailSenderLambda-V8HPWNN7JL6D" --s3-bucket "email-sender-code-us-west-2-888557227313" --s3-key "email-sender.zip"'
+            },
+
+            web_get_deps: {
+                cmd: 'go get'
+            },
+            web_compile_local: {
+                cmd: 'go build -o build/main'
+            },
+            web_compile_remote: {
+                cmd: 'GOOS=linux go build -o build/main'
+            },
+            web_update_lambda_code: {
+                cmd: ''
             }
         },
+
         compress: {
-            options_package: {
+            sender: {
                 options: {
-                    archive: 'build/email-sender.zip'
+                    archive: 'build/sender.zip'
                 },
                 expand: true,
                 cwd: 'build/email-sender/',
                 src: ['**/*'],
                 dest: '/'
+            },
+            web: {
+                options: {
+                    archive: 'build/web.zip'
+                },
+                expand: true,
+                cwd: 'build/web/',
+                src: ['main'],
+                dest: '/'
             }
         },
+
         clean: ['build/']
     });
 
@@ -102,13 +141,20 @@ module.exports = function(grunt) {
     grunt.registerTask('create-stack', ['cloudformation:createStack', 'dist', 'upload', 'cloudformation:updateStack']);
     grunt.registerTask('update-stack', ['cloudformation:updateStack']);
 
-    grunt.registerTask('test', ['jshint']);
-    grunt.registerTask('js', ['test', 'exec:tsc', 'exec:tests', 'copy:js']);
-    grunt.registerTask('dist', ['clean', 'js', 'exec:install_modules', 'copy:modules']);
-    grunt.registerTask('upload', ['compress', 'aws_s3:dist', 'exec:update_lambda_code']);
+    // The Sender build scripts
+    grunt.registerTask('sender-test', ['jshint']);
+    grunt.registerTask('sender-js', ['sender-test', 'exec:sender_tsc', 'exec:sender_tests', 'copy:js']);
+    grunt.registerTask('sender-dist', ['clean', 'sender-js', 'exec:sender_install_modules', 'copy:modules']);
+    grunt.registerTask('sender-upload', ['compress:sender', 'aws_s3:sender', 'exec:sender_update_lambda_code']);
+    grunt.registerTask('sender', ['sender-dist', 'sender-upload']);
+
+    // The API build scripts
+    grunt.registerTask('web-deps', ['exec:web_get_deps']);
+    grunt.registerTask('web-release', ['clean', 'deps', 'exec:web_compile_remote']);
+    grunt.registerTask('web-upload', ['compress:web', 'aws_s3:web', 'exec:web_update_lambda_code']);
+    grunt.registerTask('web', ['web-release', 'web-upload']);
 
     // Default task(s).
-    grunt.registerTask('default', ['dist', 'upload']);
-    grunt.registerTask('debug', ['test', 'js']);
+    grunt.registerTask('default', ['sender', 'web']);
 
 };

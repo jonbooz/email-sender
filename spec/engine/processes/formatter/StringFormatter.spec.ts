@@ -1,9 +1,9 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {BoundModule} from "../../../../src/models/BoundModule";
-import {ModuleEntry} from "../../../../src/models/ModuleEntry";
-import {StringFormatter} from "../../../../src/engine/processes/formatter/StringFormatter";
+import {BoundModule} from "../../../../sender/models/BoundModule";
+import {ModuleEntry} from "../../../../sender/models/ModuleEntry";
+import {StringFormatter} from "../../../../sender/engine/processes/formatter/StringFormatter";
 
 beforeEach(() => {
     this.sandbox = sinon.createSandbox();

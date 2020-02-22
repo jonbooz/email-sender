@@ -1,10 +1,10 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {BoundModule} from "../../../../src/models/BoundModule";
-import {Module} from "../../../../src/models/Module";
-import {Record} from "../../../../src/models/Record";
-import {FormatEmailHtml} from "../../../../src/engine/processes/formatter/FormatEmailHtml";
+import {BoundModule} from "../../../../sender/models/BoundModule";
+import {Module} from "../../../../sender/models/Module";
+import {Record} from "../../../../sender/models/Record";
+import {FormatEmailHtml} from "../../../../sender/engine/processes/formatter/FormatEmailHtml";
 
 beforeEach(() => {
     this.sandbox = sinon.createSandbox();

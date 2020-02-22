@@ -1,7 +1,7 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {Optional} from '../../src/utils/Optional';
+import {Optional} from '../../sender/utils/Optional';
 
 beforeEach(() => {
     this.sandbox = sinon.createSandbox();
