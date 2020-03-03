@@ -44,6 +44,7 @@ class KindleNotes {
            let entry = "<p>" + rawEntries[i][3] + "</p>";
            if (i !== lastIndex && rawEntries[i+1][0] === 'Note') {
                entry += "<p><em>" + rawEntries[i+1][3] + "</em></p>";
+               ++i;
            }
            entry += "<p><small>(" + rawEntries[i][1] + ")</small></p>";
            this.entries.push(entry);
