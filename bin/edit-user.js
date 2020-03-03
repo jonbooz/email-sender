@@ -20,16 +20,19 @@ if (process.argv.length === 6) {
 }
 
 
-const add = async (user, moduleName) => {
+const add = async (user, moduleName, option) => {
     const module = await dataStore.getModule(moduleName);
     if (module === null || module.id === undefined) {
         throw "Module: " + moduleName + " does not exist.";
     }
+    let include = 'always';
+    if (option !== null) {
+        include = option;
+    }
     const status = new ActiveModule({
         name: moduleName,
-        repeats: 0,
         index: 0,
-        times: 0
+        include: include
     });
     if (user.activeModules === null) {
         user.activeModules = [ ];
@@ -79,7 +82,7 @@ const setMaxLimitedModules = (user, maxLimitedModules) => {
     }
 
     if (action === 'add-module') {
-        user = await add(user, moduleName);
+        user = await add(user, moduleName, option);
     } else if (action === 'remove-module') {
         user = remove(user, moduleName)
     } else if (action === 'reorder') {
@@ -92,7 +95,7 @@ const setMaxLimitedModules = (user, maxLimitedModules) => {
         throw "Unrecognized action " + action + ". Please select from {add|remove|reorder}";
     }
 
-    console.log(user);
+    console.log(user.getDataForSaving());
 
     await dataStore.saveUser(user);
 })();
