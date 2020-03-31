@@ -35,25 +35,12 @@ module.exports = function(grunt) {
                         dest: '/'
                     }
                 ]
-            },
-            web: {
-                options: {
-                    bucket: 'email-sender-code-us-west-2-888557227313'
-                },
-                files: [
-                    {
-                        cwd: 'build/',
-                        expand: true,
-                        src: ['web.zip'],
-                        dest: '/'
-                    }
-                ]
             }
         },
 
         jshint: {
             gruntfile: "Gruntfile.js",
-            src: ["sender/**/*.js"],
+            src: ["src/**/*.js"],
             options: {
                 esversion: 8,
                 node: true,
@@ -65,7 +52,7 @@ module.exports = function(grunt) {
         copy: {
             js: {
                 files: [
-                    {expand: true, cwd: 'build/tsc/sender/', src: ['**/*.js'], dest: 'build/email-sender/'},
+                    {expand: true, cwd: 'build/tsc/src/', src: ['**/*.js'], dest: 'build/email-sender/'},
                     {expand: true, src: ['package.json'], dest: 'build/'}
                 ]
             },
@@ -89,19 +76,6 @@ module.exports = function(grunt) {
             },
             sender_update_lambda_code: {
                 cmd: 'aws lambda update-function-code --function-name "email-sender-emailSenderLambda-V8HPWNN7JL6D" --s3-bucket "email-sender-code-us-west-2-888557227313" --s3-key "sender.zip"'
-            },
-
-            web_get_deps: {
-                cmd: 'go get'
-            },
-            web_compile_local: {
-                cmd: 'go build -o build/web'
-            },
-            web_compile_remote: {
-                cmd: 'GOOS=linux go build -o build/web'
-            },
-            web_update_lambda_code: {
-                cmd: 'aws lambda update-function-code --function-name "email-sender-webAppLambda-19QFTSZVHLLG9" --s3-bucket "email-sender-code-us-west-2-888557227313" --s3-key "web.zip"'
             }
         },
 
@@ -113,15 +87,6 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'build/email-sender/',
                 src: ['**/*'],
-                dest: '/'
-            },
-            web: {
-                options: {
-                    archive: 'build/web.zip'
-                },
-                expand: true,
-                cwd: 'build/',
-                src: ['web'],
                 dest: '/'
             }
         },
@@ -148,13 +113,7 @@ module.exports = function(grunt) {
     grunt.registerTask('sender-upload', ['compress:sender', 'aws_s3:sender', 'exec:sender_update_lambda_code']);
     grunt.registerTask('sender', ['sender-dist', 'sender-upload']);
 
-    // The API build scripts
-    grunt.registerTask('web-deps', ['exec:web_get_deps']);
-    grunt.registerTask('web-release', ['clean', 'web-deps', 'exec:web_compile_remote']);
-    grunt.registerTask('web-upload', ['compress:web', 'aws_s3:web', 'exec:web_update_lambda_code']);
-    grunt.registerTask('web', ['web-release', 'web-upload']);
-
     // Default task(s).
-    grunt.registerTask('default', ['sender', 'web']);
+    grunt.registerTask('default', ['sender']);
 
 };
