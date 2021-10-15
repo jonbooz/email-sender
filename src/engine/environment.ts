@@ -21,6 +21,7 @@ import {UpdateUser} from "./processes/UpdateUser";
 import {StringFormatter} from "./processes/formatter/StringFormatter";
 import {InOrderProcess} from "./processes/InOrderProcess";
 import {ResolveLimitedModules} from "./processes/ResolveLimitedModules";
+import { ModuleProcessor } from "./processes/ModuleProcessor";
 
 export class Environment {
     private aws: AwsUtils;
@@ -46,12 +47,14 @@ export class Environment {
                 new GetAndBindData(this),
                 new ActiveModuleFilter(),
                 new ResolveLimitedModules(),
-                new HandleModules(new InOrderProcess<BoundModule>([
-                    new ResolveCurrentEntry(),
-                    new FormatEntry({
-                        'text': new StringFormatter()
-                    })
-                ])),
+                new HandleModules(new ModuleProcessor({
+                    'entries': new InOrderProcess<BoundModule>([
+                                    new ResolveCurrentEntry(),
+                                    new FormatEntry({
+                                        'text': new StringFormatter()
+                                    })
+                                ])
+                })),
                 new SortModules(),
                 new FormatEmailHtml(),
                 new SendEmail(this.getAws()),
