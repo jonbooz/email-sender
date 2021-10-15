@@ -1,17 +1,15 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {Optional} from '../../sender/utils/Optional';
-
-beforeEach(() => {
-    this.sandbox = sinon.createSandbox();
-});
-
-afterEach(() => {
-    this.sandbox.restore();
-});
+import {Optional} from '../../src/utils/Optional';
 
 describe('utils/Optional', () => {
+    const sandbox = sinon.createSandbox();
+
+    afterEach(() => {
+        sandbox.restore();
+    });
+
     it('cannot be assigned null', () => {
         expect(Optional.of.bind(Optional, null)).to.throw('Optional.of given null reference');
     });

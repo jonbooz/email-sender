@@ -1,21 +1,19 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {ActiveModule} from "../../sender/models/ActiveModule";
+import {ActiveModule} from "../../src/models/ActiveModule";
 
-import {User} from '../../sender/models/User';
+import {User} from '../../src/models/User';
 
 const USERS = require('../../../../test-data/users.json');
 
-beforeEach(() => {
-    this.sandbox = sinon.createSandbox();
-});
-
-afterEach(() => {
-    this.sandbox.restore();
-});
-
 describe('models/User', () => {
+    const sandbox = sinon.createSandbox();
+
+    afterEach(() => {
+        sandbox.restore();
+    });
+
     it('gets constructed', () => {
         const expected = USERS['test'];
         const expectedModules = expected.activeModules

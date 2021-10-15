@@ -1,19 +1,17 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {BoundModule} from "../../../../sender/models/BoundModule";
-import {ModuleEntry} from "../../../../sender/models/ModuleEntry";
-import {StringFormatter} from "../../../../sender/engine/processes/formatter/StringFormatter";
-
-beforeEach(() => {
-    this.sandbox = sinon.createSandbox();
-});
-
-afterEach(() => {
-    this.sandbox.restore();
-});
+import {BoundModule} from "../../../../src/models/BoundModule";
+import {ModuleEntry} from "../../../../src/models/ModuleEntry";
+import {StringFormatter} from "../../../../src/engine/processes/formatter/StringFormatter";
 
 describe('engine/processes/formatter/StringFormatter', () => {
+    const sandbox = sinon.createSandbox();
+
+    afterEach(() => {
+        sandbox.restore();
+    });
+
     it('formats a string', async () => {
         const formatter = new StringFormatter();
 

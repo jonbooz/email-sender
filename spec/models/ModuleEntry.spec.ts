@@ -1,17 +1,15 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {ModuleEntry} from "../../sender/models/ModuleEntry";
-
-beforeEach(() => {
-    this.sandbox = sinon.createSandbox();
-});
-
-afterEach(() => {
-    this.sandbox.restore();
-});
+import {ModuleEntry} from "../../src/models/ModuleEntry";
 
 describe('models/ModuleEntry', () => {
+    const sandbox = sinon.createSandbox();
+
+    afterEach(() => {
+        sandbox.restore();
+    });
+
     it('gets constructed', () => {
         const heading = 'heading';
         const entry = 'entry';

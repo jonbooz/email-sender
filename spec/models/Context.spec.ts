@@ -1,25 +1,23 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {Module} from '../../sender/models/Module';
-import {User} from '../../sender/models/User';
-import {LogLevel} from "../../sender/utils/logging/Logger";
-import {ConsoleLogger} from "../../sender/utils/logging/ConsoleLogger";
+import {Module} from '../../src/models/Module';
+import {User} from '../../src/models/User';
+import {LogLevel} from "../../src/utils/logging/Logger";
+import {ConsoleLogger} from "../../src/utils/logging/ConsoleLogger";
 
-import {Context} from "../../sender/models/Context";
+import {Context} from "../../src/models/Context";
 
 const MODULES = require('../../../../test-data/modules.json');
 const USERS = require('../../../../test-data/users.json');
 
-beforeEach(() => {
-    this.sandbox = sinon.createSandbox();
-});
-
-afterEach(() => {
-    this.sandbox.restore();
-});
-
 describe('models/Context', () => {
+    const sandbox = sinon.createSandbox();
+
+    afterEach(() => {
+        sandbox.restore();
+    });
+
     it('handles users', () => {
         const user = new User(USERS['test']);
         const context = new Context();

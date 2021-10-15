@@ -1,19 +1,17 @@
 import * as sinon from 'sinon';
 import {expect} from 'chai';
 
-import {BoundModule} from "../../../../sender/models/BoundModule";
-import {ModuleEntry} from "../../../../sender/models/ModuleEntry";
-import {FormatEntryHtml} from "../../../../sender/engine/processes/formatter/FormatEntryHtml";
-
-beforeEach(() => {
-    this.sandbox = sinon.createSandbox();
-});
-
-afterEach(() => {
-    this.sandbox.restore();
-});
+import {BoundModule} from "../../../../src/models/BoundModule";
+import {ModuleEntry} from "../../../../src/models/ModuleEntry";
+import {FormatEntryHtml} from "../../../../src/engine/processes/formatter/FormatEntryHtml";
 
 describe('engine/processes/formatter/FormatEntryHtml', () => {
+    const sandbox = sinon.createSandbox();
+
+    afterEach(() => {
+        sandbox.restore();
+    });
+
     it('formats an entry into HTML', async () => {
         const expected = '<h2>heading</h2><p>email</p>';
         const formatter = new FormatEntryHtml();
