@@ -147,7 +147,7 @@ module.exports = function(grunt) {
     grunt.registerTask('sender-dist', ['clean', 'sender-js', 'exec:sender_install_modules', 'copy:modules']);
     grunt.registerTask('sender-upload', ['compress:sender', 'aws_s3:sender']);
     grunt.registerTask('sender-upload-and-set', ['sender-upload', 'exec:sender_update_lambda_code']);
-    grunt.registerTask('sender', ['sender-dist', 'sender-upload']);
+    grunt.registerTask('sender', ['sender-dist', 'sender-upload-and-set']);
 
     // The Data Pull build scripts
     grunt.registerTask('dataPull-dist', ['copy:dataPull', 'exec:dataPull_install_deps']);
