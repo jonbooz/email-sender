@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 import {expect} from 'chai';
 
 import {BoundModule} from "../../../../src/models/BoundModule";
-import {ModuleEntry} from "../../../../src/models/ModuleEntry";
+import {Module} from "../../../../src/models/Module";
 import {FormatEntryHtml} from "../../../../src/engine/processes/formatter/FormatEntryHtml";
 
 describe('engine/processes/formatter/FormatEntryHtml', () => {
@@ -16,9 +16,9 @@ describe('engine/processes/formatter/FormatEntryHtml', () => {
         const expected = '<h2>heading</h2><p>email</p>';
         const formatter = new FormatEntryHtml();
 
-        const entry = new ModuleEntry('heading', 'email', 'text');
-        const module = new BoundModule(null, null, null, entry, 'email');
-        const result = await formatter.send(module);
+        const module = new Module({id:'id', heading:'heading', entries:[]});
+        const boundModule = new BoundModule(null, module, null, null, 'email');
+        const result = await formatter.send(boundModule);
 
         expect(result.email).to.eql(expected);
     });

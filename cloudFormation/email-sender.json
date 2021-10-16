@@ -154,7 +154,7 @@
             "Type": "AWS::Events::Rule",
             "Properties": {
                 "Description": "ScheduleRule",
-                "ScheduleExpression": "cron(0 12 ? * * *)",
+                "ScheduleExpression": "cron(0 12 ? * SUN *)",
                 "State": "ENABLED",
                 "Targets": [{
                     "Arn": { "Fn::GetAtt": ["emailSenderLambda", "Arn"] },
@@ -169,23 +169,6 @@
                 "Action": "lambda:InvokeFunction",
                 "Principal": "events.amazonaws.com",
                 "SourceArn": { "Fn::GetAtt": ["emailSenderTrigger", "Arn"] }
-            }
-        },
-
-        "dataPullLambda": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-                "Handler": "dataPull.handler",
-                "Role": { "Fn::GetAtt": ["lambdaRole", "Arn"] },
-                "Code": {
-                    "S3Bucket": { "Ref": "codeBucket" },
-                    "S3Key": "data-pull.zip"
-                },
-                "Runtime": "python3.8",
-                "Timeout": 300,
-                "TracingConfig": {
-                    "Mode": "Active"
-                }
             }
         }
     }

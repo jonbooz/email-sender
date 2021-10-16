@@ -4,7 +4,7 @@ import {BoundModule} from "../../../models/BoundModule";
 export class FormatEntryHtml extends Process<BoundModule, BoundModule> {
 
     protected async receive(msg: BoundModule): Promise<BoundModule> {
-        msg.email = FormatEntryHtml.heading(2, msg.moduleEntry.heading)
+        msg.email = FormatEntryHtml.heading(2, msg.module.heading)
             + FormatEntryHtml.paragraph(msg.email);
         return msg;
     }

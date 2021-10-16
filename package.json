@@ -27,7 +27,8 @@
         "credentials": "git+ssh://git@github.com:jonbooz/credentials.git",
         "node-datetime": "latest",
         "aws-sdk": "latest",
-        "readline-sync": "latest"
+        "readline-sync": "latest",
+        "node-rest-client": "latest"
     },
     "devDependencies": {
         "grunt": "latest",

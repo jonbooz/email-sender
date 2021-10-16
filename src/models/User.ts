@@ -4,6 +4,8 @@ import { Dictionary, fromPairs } from 'lodash';
 
 import { ActiveModule } from './ActiveModule';
 
+const DEFAULT_EMAIL_SUBJECT = 'Daily Reminders';
+
 /**
  * A representation of a User and its data.
  */
@@ -37,6 +39,11 @@ export class User {
      */
     limitedModuleIndex: string;
 
+    /**
+     * The subject to send.
+     */
+    emailSubject: string;
+
     constructor(user: object) {
         this.name = user['name'];
         this.email = user['email'];
@@ -49,6 +56,11 @@ export class User {
         }
         if (user.hasOwnProperty('limitedModuleIndex')) {
             this.limitedModuleIndex = user['limitedModuleIndex'];
+        }
+        if (user.hasOwnProperty('emailSubject')) {
+            this.emailSubject = user['emailSubject'];
+        } else {
+            this.emailSubject = DEFAULT_EMAIL_SUBJECT;
         }
     }
 

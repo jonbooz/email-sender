@@ -3,7 +3,7 @@
 const Environment = require('./engine/environment').Environment;
 const Record = require('./models/Record').Record;
 
-const DEFAULT_USER = "jonbooz";
+const DEFAULT_USER = "g20";
 
 const emailSenderHandler = async function(event, ctx, callback) {
 
@@ -17,7 +17,7 @@ const emailSenderHandler = async function(event, ctx, callback) {
     }
 
     const environment = new Environment();
-    await environment.getProcess().send(new Record(userName))
+    return await environment.getProcess().send(new Record(userName))
         .then(_ => true)
         .catch(reason => {
             console.log(`Error on user: ${userName}: ${reason}`);
