@@ -49,8 +49,7 @@ describe('services/DataStore', () => {
 
         const dataStore = new DataStore(aws);
         const users = await dataStore.getActiveUsers();
-        const expected = allUsers.map(u => u['name']);
-        expect(users).to.eql(expected);
+        expect(users).to.eql(['jonbooz']);
     });
 
     it('saves a user', async () => {

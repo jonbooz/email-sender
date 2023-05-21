@@ -27,7 +27,8 @@ export class DataStore {
     async getActiveUsers(): Promise<Array<string>> {
         let resources = await this.aws.listStackResources(STACK_NAME);
         return await this.aws.ddb.scanAll(resources[USERS_TABLE])
-            .then(data => data.map(d => d['name']));
+            .then(data => data.map(d => d['name']))
+            .then(data => data.filter(name => name !== 'test'));
     }
 
     async saveUser(user: User) {
