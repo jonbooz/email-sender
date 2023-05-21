@@ -3,25 +3,25 @@
 const Environment = require('./engine/environment').Environment;
 const Record = require('./models/Record').Record;
 
-const DEFAULT_USER = "g20";
+const getUserNames = async function(event, environment) {
+    if (event.hasOwnProperty('context')) {
+        return [event.context.user.name];
+    } else if (event.hasOwnProperty('user')) {
+        return [event.user];
+    }
+
+    return await environment.getDataStore().getActiveUsers();
+};
 
 const emailSenderHandler = async function(event, ctx, callback) {
 
-    let userName = null;
-    if (event.hasOwnProperty('context')) {
-        userName = event.context.user.name;
-    } else if (event.hasOwnProperty('user')) {
-        userName = event.user;
-    } else {
-        userName = DEFAULT_USER;
-    }
-
     const environment = new Environment();
-    return await environment.getProcess().send(new Record(userName))
-        .then(_ => true)
-        .catch(reason => {
-            console.log(`Error on user: ${userName}: ${reason}`);
-            return false;
+    const users = await getUserNames(event, environment);
+    const processes = users.map(u => environment.getProcess().send(new Record(u)));
+    return await Promise.allSettled(processes)
+        .then(responses => {
+            console.log(responses);
+            return true;
         });
 };
 

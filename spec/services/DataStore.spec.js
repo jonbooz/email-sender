@@ -37,6 +37,22 @@ describe('services/DataStore', () => {
         expect(user).to.eql(expectedUser);
     });
 
+    it('gets all users', async () => {
+        const allUsers = [USERS['jonbooz'], USERS['test']];
+
+        const aws = { };
+        aws.listStackResources = LIST_STACK_RESOURCES;
+        aws.ddb = { };
+        aws.ddb.scanAll = async (table, params) => {
+            return allUsers;
+        };
+
+        const dataStore = new DataStore(aws);
+        const users = await dataStore.getActiveUsers();
+        const expected = allUsers.map(u => u['name']);
+        expect(users).to.eql(expected);
+    });
+
     it('saves a user', async () => {
         let checkCall = { };
         const expectedUser = new User(USERS['test']);

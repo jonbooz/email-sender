@@ -24,6 +24,12 @@ export class DataStore {
             .then(data => new User(data));
     }
 
+    async getActiveUsers(): Promise<Array<string>> {
+        let resources = await this.aws.listStackResources(STACK_NAME);
+        return await this.aws.ddb.scanAll(resources[USERS_TABLE])
+            .then(data => data.map(d => d['name']));
+    }
+
     async saveUser(user: User) {
         let resources = await this.aws.listStackResources(STACK_NAME);
         await this.aws.ddb.save(resources[USERS_TABLE], user.getDataForSaving());
