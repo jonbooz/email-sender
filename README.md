@@ -1,5 +1,7 @@
 # email-sender
-An email sender for my as of yet unnamed service.
+A system that can send recurring emails based on configured module.
+
+For instance, if you have notes that you want to be reminded of and view on a recurring basis.
 
 ## Development
 
