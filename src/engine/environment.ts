@@ -22,7 +22,7 @@ import {StringFormatter} from "./processes/formatter/StringFormatter";
 import {InOrderProcess} from "./processes/InOrderProcess";
 import {ResolveLimitedModules} from "./processes/ResolveLimitedModules";
 import { ModuleProcessor } from "./processes/ModuleProcessor";
-import { GenTwentyRecentPosts } from "./processes/GenTwentyRecentPosts";
+import { WordpressRecentPosts } from "./processes/WordpressRecentPosts";
 
 export class Environment {
     private aws: AwsUtils;
@@ -55,7 +55,7 @@ export class Environment {
                                         'text': new StringFormatter()
                                     })
                                 ]),
-                    'g20-posts': new GenTwentyRecentPosts(10)
+                    'wordpress-posts': new WordpressRecentPosts(10)
                 })),
                 new SortModules(),
                 new FormatEmailHtml(),

@@ -2,16 +2,13 @@ import { BoundModule } from "../../models/BoundModule";
 import { Process } from "./Process";
 
 import { Client } from 'node-rest-client';
-import { Logger } from "../../utils/logging/Logger";
 import { FormatEntryHtml } from "./formatter/FormatEntryHtml";
-
-const G20_URL = "https://gentwenty.com/wp-json/wp/v2/posts?per_page=10&page=1";
 
 /**
  * This process provides support for creating an entry with the 10 most recent
- * posts from GenTwenty.
+ * posts from a wordpress site.
  */
-export class GenTwentyRecentPosts extends Process<BoundModule, BoundModule> {
+export class WordpressRecentPosts extends Process<BoundModule, BoundModule> {
 
     private readonly client = new Client();
     private readonly formatEntryHtml = new FormatEntryHtml();
@@ -23,15 +20,16 @@ export class GenTwentyRecentPosts extends Process<BoundModule, BoundModule> {
     }
 
     protected receive(msg: BoundModule): Promise<BoundModule> {
-        return this.getG20Posts()
-                .then(g20Posts => this.formatPosts(g20Posts))
+        const wordpressUrl = msg.module.entries[0];
+        return this.getPosts(wordpressUrl)
+                .then(posts => this.formatPosts(posts))
                 .then(shuffledPosts => this.writeAsEmail(msg, shuffledPosts))
                 .then(msgWithEmail => this.formatEntryHtml.send(msgWithEmail));
     }
 
-    private async getG20Posts(): Promise<any> {
+    private async getPosts(wordpressUrl: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.client.get(G20_URL, (data, response) => {
+            this.client.get(wordpressUrl, (data, response) => {
                 resolve(data);
             });
         })
