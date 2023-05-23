@@ -1,5 +1,5 @@
 # email-sender
-A system that can send recurring emails based on configured module.
+A system that can send recurring emails based on configured modules.
 
 For instance, if you have notes that you want to be reminded of and view on a recurring basis.
 
